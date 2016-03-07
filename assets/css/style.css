@@ -25,7 +25,7 @@ html,body{
   border: 0;
 }
 .c-lang .active {
-background: rgba(255, 43, 6, 0.8);
+  background: rgba(255, 43, 6, 0.8);
 }
 
 .content {
@@ -36,6 +36,9 @@ background: rgba(255, 43, 6, 0.8);
   padding: 40px 60px 60px 60px;
   box-sizing: border-box;
   top: 50%;
+}
+.content h1 {
+  font-size: 48px;
 }
 
 .content .side-layer{
@@ -69,5 +72,3 @@ background: rgba(255, 43, 6, 0.8);
 .social a:hover{
   color: #ccc;
 }
-
-.
