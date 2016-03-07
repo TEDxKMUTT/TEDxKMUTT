@@ -16,7 +16,7 @@ html,body{
 
 .c-lang {
   position: absolute;
-    right: 20px;
+    right: 1.25em; /* 20/16 */
     top: 20px;
 }
 
