@@ -38,7 +38,7 @@ html,body{
   top: 50%;
 }
 .content h1 {
-  font-size: 48px;
+  font-size: 38px;
 }
 
 .content .side-layer{
@@ -49,11 +49,15 @@ html,body{
   width: 400px;
 }
 
-.social a {
-  width: 15px;
-  height: 20px;
+.copyright {
   display: inline-block;
-  margin: 0 5px;
+  font-size: 14px
+}
+.social a {
+  width: 20px;
+  height: 26px;
+  display: inline-block;
+  margin-right: 5px;
   color: white;
   font-size: 20px;
   margin-top: 5px;
@@ -68,6 +72,9 @@ html,body{
   font-weight: 500;
   letter-spacing: 1.2px;
   border-radius: 0;
+}
+.buttons .btn:focus{
+  outline: 0;
 }
 .social a:hover{
   color: #ccc;
