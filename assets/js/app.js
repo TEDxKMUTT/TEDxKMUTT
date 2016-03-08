@@ -37,9 +37,9 @@ var item = {
   en: {
     fp: "<strong>TEDxKMUTT</strong> is a group of student who interested in creativity and idea exchange to  develop community." +
       " We host TEDx events to share an intention for improving our society.",
-    sp: "The TEDx Program is designed to help communities, organizations and individuals  " +
+    sp: "The TEDx Program is designed to help communities, organizations and individuals " +
       "to spark conversation and connection through local TED-like experiences.",
-    tp: "Now, We need someone who are interested in TEDx to be a part of our team.  " + "We want individuals who have high potential, high responsibility, and positive passion.  " +
+    tp: "Now, We need someone who are interested in TEDx to be a part of our team.  " + " We want individuals who have high potential, high responsibility, and positive passion.  " +
       "If you have all that we are looking for, apply with confidence.",
   },
   th: {
