@@ -5,13 +5,8 @@ app.controller('renderText', function($scope, $sce) {
 
   clang = 'en';
 
-  this.isLang = function(chk) {
-    console.log(clang);
-    return clang == chk;
-  };
-
-  this.lang = function(clang) {
-    if (clang == 'en') {
+  this.lang = function(changeLang) {
+    if (changeLang == 'en') {
       clang = 'en';
       this.content = item.en;
     } else {
@@ -20,8 +15,12 @@ app.controller('renderText', function($scope, $sce) {
     };
   };
 
+  this.isLang = function(chk) {
+    console.log(clang);
+    return clang == chk;
+  };
+
   $scope.getHTML = function(html){
-    console.log("got!");
     return $sce.trustAsHtml(html);
   };
 
