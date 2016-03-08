@@ -51,3 +51,10 @@ var item = {
       "กดปุ่ม Join Volenteer เพื่อมาเป็นส่วนนึงของ TEDxKMUTT",
   }
 };
+
+var init = function(){
+  console.log("init");
+  TweenMax.to("#main", 2.8, {css: {opacity:1,visibility:'visible'}});
+};
+
+init();
