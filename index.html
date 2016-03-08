@@ -7,19 +7,19 @@
   <link rel="stylesheet" href="assets/css/style.css" charset="utf-8">
 </head>
 <body>
-  <div id="main" class="container" ng-controller="renderText as text">
+  <div id="main" ng-controller="renderText as text">
     <div class="c-lang">
       <button class="th" ng-click="text.lang('th')" ng-class="{active : text.isLang('th')}">TH</button>
       |
       <button class="en" ng-click="text.lang('en')" ng-class="{active : text.isLang('en')}">EN</button>
     </div>
-    <div class="content">
-      <div class="side-layer">
+    <div class="container-fluid">
+      <div class="col-xs-12 col-sm-7 col-sm-offset-5 col-md-6 col-md-offset-6 content">
         <div class="row logo">
           <img src="assets/images/tedx_logo.png" alt="TEDxKMUTT">
         </div>
         <div class="row">
-          <h1>{{text.content.coming}}</h1>
+          <h1>COMING SOON...</h1>
         </div>
         <div class="row">
           <p ng-bind-html="getHTML(text.content.fp)">

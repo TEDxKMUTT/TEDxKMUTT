@@ -1,8 +1,23 @@
-html,body{
+/* TEDxKMUTT
+   by
+   F J T T
 
+  powered by Angular.js
+   */
+
+/* Config and Init */
+html,body{
   color: white;
 }
+.container{
+  padding: 0;
+}
 
+.row {
+  margin: 0;
+}
+
+/* Background */
 #main {
   background: url(../images/bg.jpg);
   width: 100%;
@@ -14,6 +29,7 @@ html,body{
   background-size: cover;
 }
 
+/* Change Language Button */
 .c-lang {
   position: absolute;
     right: 1.25em; /* 20/16 */
@@ -30,30 +46,21 @@ html,body{
   background: rgba(255, 43, 6, 0.8);
 }
 
+/* Content */
 .content {
-  width: 50%;
-  margin-left: auto;
-  margin-right: 0;
-  position: relative;
-  padding: 40px 60px 60px 60px;
-  box-sizing: border-box;
+  position: absolute;
   top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
 }
 .content h1 {
   font-size: 38px;
 }
-
 .content .side-layer{
   margin-top: -50%;
 }
-
 .logo img {
   width: 400px;
-}
-
-.copyright {
-  display: inline-block;
-  font-size: 14px
 }
 .social a {
   width: 20px;
@@ -64,6 +71,9 @@ html,body{
   font-size: 20px;
   margin-top: 5px;
   transition: all .2s;
+}
+.social a:hover{
+  color: #ccc;
 }
 .buttons .btn{
   background: #ff2b06;
@@ -78,6 +88,42 @@ html,body{
 .buttons .btn:focus{
   outline: 0;
 }
-.social a:hover{
-  color: #ccc;
+.copyright {
+  display: inline-block;
+  font-size: 14px
+}
+
+/* Media Query */
+@media (max-width: 767px) {
+  .container-fluid {
+    height: 100%;
+  }
+  .content{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 100%;
+  }
+  .content .row{
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .content .logo img {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .content{
+    width: 55%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .content{
+    width: 45%;
+  }
+}
+@media (min-width: 1200px) {
 }
