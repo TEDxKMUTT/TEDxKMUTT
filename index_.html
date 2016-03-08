@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>TEDxKMUTT : Coming Soon</title>
+  <meta name="description" content="TEDxKMUTT is a group of student who interested in creativity and idea exchange to develop community. We host TEDx events to share an intention for improving our society.">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" charset="utf-8">
+  <link rel="stylesheet" href="assets/vendor/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css" charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+</head>
+<body>
+  <div id="main" ng-controller="renderText as text">
+    <div class="c-lang">
+      <button class="th" ng-click="text.lang('th')" ng-class="{active : text.isLang('th')}">TH</button>
+      |
+      <button class="en" ng-click="text.lang('en')" ng-class="{active : text.isLang('en')}">EN</button>
+    </div>
+    <div class="container-fluid">
+      <div class="col-xs-12 col-sm-7 col-sm-offset-5 col-md-6 col-md-offset-6 content">
+        <!-- <div class="ng-view" ng-include="'app/template/home.html'"> -->
+        <div class="row logo">
+          <img src="assets/images/tedx_logo.png" alt="TEDxKMUTT">
+        </div>
+        <div class="row">
+          <h1>21<sup>st</sup> March</h1>
+        </div>
+        <div class="row detail">
+          <p ng-bind-html="getHTML(text.content.fp)">
+          </p>
+          <p ng-bind-html="getHTML(text.content.sp)">
+          </p>
+          <p ng-bind-html="getHTML(text.content.tp)">
+          </p>
+        </div>
+        <div class="row">
+          <div class="buttons">
+            <button class="btn btn-tedx"></button>
+          </div>
+          <div class="social">
+            <a href="https://fb.com/tedxkmutt"><i class="fa fa-facebook"></i></a>
+            <a href="mailto:support@tedxkmutt.com"><i class="fa fa-envelope-o"></i></a>
+            <div class="copyright">© <span ng-controller="date as years">{{year}}</span> TEDxKMUTT</div>
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- Javascript Zone -->
+  <script type="text/javascript" src="assets/vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/vendor/angular.min.js"></script>
+  <script type="text/javascript" src="assets/vendor/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="assets/vendor/angular-route.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+  <script type="text/javascript" src="app/app.js"></script>
+  <!-- <script type="text/javascript" src="app/routes.js"></script> -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-74861704-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</body>
+</html>

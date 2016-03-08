@@ -1,36 +1,55 @@
-var app = angular.module('app', ['ngSanitize','ngRoute']);
+var app = angular.module('tedxkmutt', ['ngSanitize','ngRoute']);
 
-app.controller('renderText', function($scope, $sce) {
-  this.content = item.en;
-
+app.controller('homeController', function($scope, $sce) {
+  $scope.content = item.en;
   clang = 'en';
 
-  this.lang = function(changeLang) {
+  $scope.lang = function(changeLang) {
     if (changeLang == 'en') {
       clang = 'en';
-      this.content = item.en;
+      $scope.content = item.en;
+      console.log("lang en");
     } else {
       clang = 'th';
-      this.content = item.th;
+      $scope.content = item.th;
+      console.log("lang th");
     };
   };
-
-  this.isLang = function(chk) {
+  $scope.isLang = function(chk) {
     // console.log(clang);
     return clang == chk;
   };
-
   $scope.getHTML = function(html){
     return $sce.trustAsHtml(html);
   };
-
-
 });
 
 app.controller('date', function($scope) {
   this.dates = new Date();
   $scope.year = this.dates.getFullYear();
 });
+
+app.controller('regController',function($scope){
+  $('.content').addClass('clear');
+});
+
+app.config(function($routeProvider){
+  $routeProvider
+  .when('/',{
+    templateUrl: "app/template/home.html",
+    controller: 'homeController',
+    controllerAs: 'home'
+  })
+  .when('/registration',{
+    templateUrl: "app/template/registration.html",
+    controller: 'regController',
+    controllerAs: 'reg'
+  })
+  .otherwise({ redirectTo: '/'});
+
+});
+
+
 
 var item = {
   en: {
@@ -52,7 +71,6 @@ var item = {
 };
 
 var init = function(){
-  console.log("init");
   TweenMax.to("#main", 2.8, {css: {opacity:1,visibility:'visible'}});
 };
 

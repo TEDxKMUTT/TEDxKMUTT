@@ -22,7 +22,7 @@ html,body{
 
 /* Background */
 #main {
-  background: url(../images/bg.jpg);
+  background: url(../images/bg_tedx.jpg);
   width: 100%;
   height: 100vh;
   background-position: 50% 60%;
@@ -59,7 +59,8 @@ html,body{
   width: 40%;
 }
 .content h1 {
-  font-size: 2.375em; /* 38/16 */
+  font-size: 3.475em;
+  margin: 10px 0;
 }
 .content .side-layer{
   margin-top: -50%;
@@ -84,19 +85,38 @@ html,body{
   background: #ff2b06;
   color: #fff;
   padding: 0.685em 3.525em;
+  width: 18em;
   margin: 0.3125em 0; /* 5/16 */
   font-size: 1em; /* 16/16 */
   font-weight: 500;
   letter-spacing: 0.125em; /* 2/16 */
   border-radius: 0;
+  cursor: default;
 }
 .buttons .btn:focus{
   outline: 0;
+}
+
+.buttons .btn:before{
+  content : "BE A VOLUNTEER";
+}
+.buttons .btn:hover:before{
+  content : "FIRST CALL 21.3";
 }
 .copyright {
   display: inline-block;
   font-size: 1em;
 }
+
+/* Clearfix Pre launch */
+.content.clear {
+  position: static;
+  top: 0;
+  transform: translateY(0);
+  width: inherit;
+  margin-top: 5em;
+}
+
 
 /* Media Query */
 @media (max-width: 767px) {
