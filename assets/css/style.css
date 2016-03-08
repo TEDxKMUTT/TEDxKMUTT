@@ -139,6 +139,7 @@ html,body{
     animation: fadeIn 1.75s;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   html,body{
     font-size: 14px;
@@ -153,6 +154,7 @@ html,body{
   }
 }
 @media (min-width: 1200px) {
+  /* say something */
 }
 
 @keyframes zoomIn {
