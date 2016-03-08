@@ -8,6 +8,9 @@
 /* Config and Init */
 html,body{
   color: white;
+  font-size: 14px;
+  transition: all .2s;
+  background-color: black;
 }
 .container{
   padding: 0;
@@ -60,16 +63,16 @@ html,body{
   margin-top: -50%;
 }
 .logo img {
-  width: 400px;
+  width: 400px; /* 400/16 */
 }
 .social a {
-  width: 20px;
-  height: 26px;
+  width: 1.25em; /* 20/16 */
+  height: 1.625em; /* 26/16 */
   display: inline-block;
   margin-right: 5px;
   color: white;
-  font-size: 20px;
-  margin-top: 5px;
+  font-size: 1.25em; /* 20/16 */
+  margin-top: 0.3125em; /* 5/16 */
   transition: all .2s;
 }
 .social a:hover{
@@ -78,11 +81,11 @@ html,body{
 .buttons .btn{
   background: #ff2b06;
   color: #fff;
-  padding: 10px 50px;
-  margin: 5px 0;
-  font-size: 16px;
+  padding: 0.685em 3.525em;
+  margin: 0.3125em 0; /* 5/16 */
+  font-size: 1em; /* 16/16 */
   font-weight: 500;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.125em; /* 2/16 */
   border-radius: 0;
 }
 .buttons .btn:focus{
@@ -90,11 +93,14 @@ html,body{
 }
 .copyright {
   display: inline-block;
-  font-size: 14px
+  font-size: 1em;
 }
 
 /* Media Query */
 @media (max-width: 767px) {
+  html,body{
+    font-size: 12px;
+  }
   .container-fluid {
     height: 100%;
   }
@@ -116,6 +122,9 @@ html,body{
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  html,body{
+    font-size: 14px;
+  }
   .content{
     width: 55%;
   }
