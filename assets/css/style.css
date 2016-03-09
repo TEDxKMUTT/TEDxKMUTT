@@ -96,12 +96,18 @@ html,body{
 .buttons .btn:focus{
   outline: 0;
 }
-
-.buttons .btn:before{
+/* btn text */
+.buttons .btn-reg:before{
   content : "BE A VOLUNTEER";
 }
-.buttons .btn:hover:before{
+.buttons .btn-reg:hover:before{
   content : "FIRST CALL 21.3";
+}
+.buttons .btn-about:before{
+  content : "ABOUT TEDx";
+}
+.buttons .btn-back:before{
+  content : "BACK";
 }
 .copyright {
   display: inline-block;
@@ -117,6 +123,9 @@ html,body{
   margin-top: 5em;
 }
 
+/* Animate ngView*/
+.view-animate.ng-enter { animation: fadeIn .2s both ease-in; z-index: 8888; }
+.view-animate.ng-leave { animation: fadeOut .2s both ease-out; z-index: 9999; }
 
 /* Media Query */
 @media (max-width: 767px) {
@@ -131,7 +140,7 @@ html,body{
   }
   .content{
     position: relative;
-    top: 10%;
+    padding-top: 14%;
     transform: translateY(0);
     text-align: center;
     width: 100%;
@@ -182,5 +191,29 @@ html,body{
   to{
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from{
+    margin-left: 5%;
+    opacity: 0;
+    visibility: hidden;
+  }
+  to{
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  from{
+    opacity: 1;
+    visibility: visible;
+  }
+  to{
+    opacity: 0;
+    margin-left: -5%;
+    visibility: hidden;
   }
 }
