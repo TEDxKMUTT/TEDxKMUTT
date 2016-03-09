@@ -124,8 +124,8 @@ html,body{
 }
 
 /* Animate ngView*/
-.view-animate.ng-enter { animation: fadeIn .2s both ease-in; z-index: 8888; }
-.view-animate.ng-leave { animation: fadeOut .2s both ease-out; z-index: 9999; }
+.view-animate.ng-enter { animation: fadeIn .5s both ease; z-index: 8888; }
+.view-animate.ng-leave { animation: fadeOut .5s both ease; z-index: 9999; }
 
 /* Media Query */
 @media (max-width: 767px) {
@@ -196,7 +196,7 @@ html,body{
 
 @keyframes fadeIn {
   from{
-    margin-left: 5%;
+    margin-left: 2.5%;
     opacity: 0;
     visibility: hidden;
   }
@@ -213,7 +213,7 @@ html,body{
   }
   to{
     opacity: 0;
-    margin-left: -5%;
+    margin-left: -2.5%;
     visibility: hidden;
   }
 }
