@@ -125,3 +125,5 @@ var init = function(){
 };
 
 init();
+
+console.log('heroku deploy completed');
