@@ -84,12 +84,13 @@ app.controller('regController',function($scope){
 });
 var hContent = {
   en: {
-    fp: "<strong>TEDxKMUTT</strong> is a group of student who interested in creativity and idea exchange to  develop community." +
-      " We host TEDx events to share an intention for improving our society.",
-    sp: "The TEDx Program is designed to help communities, organizations and individuals " +
-      "to spark conversation and connection through local TED-like experiences.",
-    tp: "Now, We need someone who are interested in TEDx to be a part of our team.  " + " We want individuals who have high potential, high responsibility, and positive passion.  " +
-      "If you have all that we are looking for, apply with confidence.",
+    fp: "<strong>TEDxKMUTT</strong> is a group of students interested in creativity, ideas, and innovation." +
+      " We host TEDx events to enrich our community with inspiring idea exchanges.",
+    sp: "The TEDx Program is intended to help communities, organizations and individuals spark " +
+      "conversation and build connection through local TED-like experiences.",
+    tp: "Now the TEDxKMUTT team needs your help. We are looking for well-motivated individuals " +
+        "with high responsibility, who is passionate about transforming people and communities, " +
+        "to join us. Apply now.",
   },
   th: {
     fp: "<strong>TEDxKMUTT</strong> คือกลุ่มนักศึกษา ที่มีความสนใจในการสร้างสรรค์และแลกเปลี่ยนไอเดียสู่การสร้างสรรค์  " +
