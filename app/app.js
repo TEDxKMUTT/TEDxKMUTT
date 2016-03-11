@@ -86,8 +86,8 @@ var hContent = {
   en: {
     fp: "<strong>TEDxKMUTT</strong> is a group of students interested in creativity, ideas, and innovation." +
       " We host TEDx events to enrich our community with inspiring idea exchanges.",
-    sp: "The TEDx Program is intended to help communities, organizations and individuals spark " +
-      "conversation and build connection through local TED-like experiences.",
+    sp: "The TEDx Program is intended to help communities, organizations and individual spark " +
+      "conversation and build connections through local TED-like experiences.",
     tp: "Now the TEDxKMUTT team needs your help. We are looking for well-motivated individuals " +
         "with high responsibility, who is passionate about transforming people and communities, " +
         "to join us. Apply now.",
