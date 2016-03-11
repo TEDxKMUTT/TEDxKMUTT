@@ -1,0 +1,199 @@
+			<h2 class="text-white">Registration</h2>
+			<div class="alert alert-danger alert-red" role="alert" ng-show="submitted && (regisForm.$invalid || dropdown.prefix.select == null || dropdown.faculty.select == null || dropdown.year.select == null || checkDiv.gender.select == null || checkDiv.group.select == null)"><strong>All field is required!</strong> Please check your information and submit again</div>
+			<!-- Register Form -->
+			<form name="regisForm" class="form-horizontal" ng-submit="submitForm(formData)" novalidate>
+				<!-- Name -->
+				<div class="form-group">
+					<div class="col-sm-6">
+						<div ng-class="{'has-error': (regisForm.name.$invalid || dropdown.prefix.select == null) && (regisForm.name.$touched || submitted)}">
+							<label for="name" class="control-label text-white"><span ng-show="(regisForm.name.$invalid || dropdown.prefix.select == null) && (regisForm.name.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> ชื่อ</label>
+							<div class="input-group">
+								<!-- Prefix Dropdown -->
+								<div class="input-group-btn btn-group" uib-dropdown>
+								  <button id="single-button" type="button" class="btn btn-black" uib-dropdown-toggle ng-disabled="disabled">
+									{{formData.prefix}} <span class="caret"></span>
+								  </button>
+								  <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+									<li role="menuitem" ng-repeat="item in dropdown.prefix.data"><a href="" ng-click="selectOption('dropdown','prefix',$index);">{{item}}</a></li>
+								  </ul>
+								</div><!-- End of Prefix Dropdown -->
+								<input type="text" class="form-control text-white bg-black" name="name" ng-model="formData.name" required>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<div ng-class="{'has-error': regisForm.lastName.$invalid && (regisForm.lastName.$touched || submitted)}">
+							<label for="lastName" class="control-label text-white"><span ng-show="regisForm.lastName.$invalid && (regisForm.lastName.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> นามสกุล</label>
+							<input type="text" class="form-control text-white bg-black" name="lastName" ng-model="formData.lastName" required>
+						</div>
+					</div>
+				</div><!-- End of Name -->
+				
+				<!-- Nick name, age -->
+				<div class="form-group">
+					<div class="col-sm-9">
+						<div ng-class="{'has-error': regisForm.nickname.$invalid && (regisForm.nickname.$touched || submitted)}">
+							<label for="nickname" class="control-label text-white"><span ng-show="regisForm.nickname.$invalid && (regisForm.nickname.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> ชื่อเล่น</label>
+							<input type="text" class="form-control text-white bg-black" name="nickname" ng-model="formData.nickname" required>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div ng-class="{'has-error': regisForm.age.$invalid && (regisForm.age.$touched || submitted)}">
+							<label for="age" class="control-label text-white"><span ng-show="regisForm.age.$invalid && (regisForm.age.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> อายุ</label>
+							<input type="number" class="form-control text-white bg-black" name="age" ng-model="formData.age" required>
+						</div>
+					</div>
+				</div><!-- End of Nick name, age -->
+				
+				<!-- Gender -->
+				<div class="form-group" ng-class="{'has-error': checkDiv.gender.select == null && submitted}">
+					<label class="control-label text-white checkbox-div-label"><span ng-show="checkDiv.gender.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> เพศ</label>
+					<div class="checkbox-div">
+						<div class="col-sm-4" ng-repeat="item in checkDiv.gender.data">
+							<a href="" ng-click="selectOption('checkDiv','gender',$index)">
+								<div class="option" ng-class="{'activeChoice': $index == checkDiv.gender.select}">
+									<i class="fa fa-2x fa-{{checkDiv.gender.icon[$index]}}"></i><br/>
+									{{item}}
+								</div>
+							</a>
+						</div>
+					</div>
+				</div><!-- End of gender -->
+				
+				<!-- Faculty -->
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div ng-class="{'has-error': dropdown.faculty.select == null && submitted}">
+							<label class="control-label text-white"><span ng-show="dropdown.faculty.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> คณะ</label>
+							<br/>
+							<!-- Faculty Dropdown -->
+							<div class="btn-group btn-block" uib-dropdown>
+							  <button id="single-button" type="button" class="btn btn-block btn-black" uib-dropdown-toggle ng-disabled="disabled">
+								{{formData.faculty}} <span class="caret"></span>
+							  </button>
+							  <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+								<li role="menuitem" ng-repeat="item in dropdown.faculty.data"><a href="" ng-click="selectOption('dropdown','faculty',$index);">{{item}}</a></li>
+							  </ul>
+							</div><!-- End of Faculty Dropdown -->
+						</div>
+					</div>
+				</div><!-- End of Faculty, department, year -->
+				
+				<div class="form-group">
+					<div class="col-sm-9">
+						<div ng-class="{'has-error': regisForm.department.$invalid && (regisForm.department.$touched || submitted)}">
+							<label for="department" class="control-label text-white"><span ng-show="regisForm.department.$invalid && (regisForm.department.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> ภาควิชา</label>
+							<input type="text" class="form-control text-white bg-black" name="department" ng-model="formData.department" required>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div ng-class="{'has-error': dropdown.year.select == null && submitted}">
+							<label class="control-label text-white"><span ng-show="dropdown.year.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> ชั้นปี</label>
+							<br/>
+							<!-- Year Dropdown -->
+							<div class="btn-group btn-block" uib-dropdown>
+							  <button id="single-button" type="button" class="btn btn-block btn-black" uib-dropdown-toggle ng-disabled="disabled">
+								{{formData.year}} <span class="caret"></span>
+							  </button>
+							  <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+								<li role="menuitem" ng-repeat="item in dropdown.year.data"><a href="" ng-click="selectOption('dropdown','year',$index);">{{item}}</a></li>
+							  </ul>
+							</div>
+						</div><!-- End of Year Dropdown -->
+					</div>
+				</div>
+				
+				<!-- Student ID -->
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div ng-class="{'has-error': regisForm.studentID.$invalid && (regisForm.studentID.$touched || submitted)}">
+							<label for="studentID" class="control-label text-white"><span ng-show="regisForm.studentID.$invalid && (regisForm.studentID.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> รหัสนักศึกษา</label>
+							<input type="number" class="form-control text-white bg-black" name="studentID" ng-model="formData.studentID" required>
+						</div><!-- End of Student ID -->
+					</div>
+				</div>
+				
+				<!-- Email, Phone -->
+				<div class="form-group">
+					<div class="col-sm-6">
+						<div ng-class="{'has-error': regisForm.email.$invalid && (regisForm.email.$touched || submitted)}">
+							<label for="email" class="control-label text-white"><span ng-show="regisForm.email.$invalid && (regisForm.email.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> อีเมลล์</label>
+							<input type="email" class="form-control text-white bg-black" name="email" ng-model="formData.email" required>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<div ng-class="{'has-error': regisForm.phone.$invalid && (regisForm.phone.$touched || submitted)}">
+							<label for="phone" class="control-label text-white"><span ng-show="regisForm.phone.$invalid && (regisForm.phone.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> เบอร์โทรศัพท์</label>
+							<input type="text" class="form-control text-white bg-black" name="phone" ng-model="formData.phone" required>
+						</div>
+					</div>
+				</div>
+				<!-- End of Email, Phone -->
+				
+				<!-- Group -->
+				<div class="form-group" ng-class="{'has-error': checkDiv.group.select == null && submitted}">
+					<label class="control-label text-white checkbox-div-label"><span ng-show="checkDiv.group.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> มีความประสงค์ที่จะสมัครเข้า</label>
+					<div class="checkbox-div">
+						<div class="col-sm-4" ng-repeat="item in checkDiv.group.data">
+							<a href="" ng-click="selectOption('checkDiv','group',$index)">
+								<div class="option" ng-class="{'activeChoice': $index == checkDiv.group.select}">
+									<i class="fa fa-2x fa-{{checkDiv.group.icon[$index]}}"></i><br/>
+									{{item}}
+								</div>
+							</a>
+						</div>
+					</div>
+				</div><!-- End of group -->
+				
+				<!-- Q1 -->
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div ng-class="{'has-error': regisForm.q1.$invalid && (regisForm.q1.$touched || submitted)}">
+							<label for="q1" class="control-label text-white"><span ng-show="regisForm.q1.$invalid && (regisForm.q1.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> Q1 จงบอกความเป็นตัวคุณออกมา คุณทำอะไรมาบ้าง ทำอะไรอยู่ และกำลังจะทำอะไร?</label>
+							<textarea class="form-control text-white bg-black bg-black" rows="5" name="q1" ng-model="formData.q1" required></textarea>
+						</div>
+					</div>
+				</div><!-- End of Q1 -->
+				
+				<!-- Q2 -->
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div ng-class="{'has-error': regisForm.q2.$invalid && (regisForm.q2.$touched || submitted)}">
+							<label for="q2" class="control-label text-white"><span ng-show="regisForm.q2.$invalid && (regisForm.q2.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> Q2 อะไรคือแรงบัลดาลใจของคุณ?</label>
+							<textarea class="form-control text-white bg-black" rows="5" name="q2" ng-model="formData.q2" required></textarea>
+						</div>
+					</div>
+				</div><!-- End of Q2 -->
+				
+				<!-- Q3 -->
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div ng-class="{'has-error': regisForm.q3.$invalid && (regisForm.q3.$touched || submitted)}">
+							<label for="q3" class="control-label text-white"><span ng-show="regisForm.q3.$invalid && (regisForm.q3.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> Q3 จงทำให้เราเข้าใจในตัวคุณมากยิ่งขึ้นจากลิงค์สามลิงค์</label>
+							<textarea class="form-control text-white bg-black" rows="5" name="q3" ng-model="formData.q3" required></textarea>
+						</div>
+					</div>
+				</div><!-- End of Q3 -->
+				
+				<!-- Q4 -->
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div ng-class="{'has-error': regisForm.q4.$invalid && (regisForm.q4.$touched || submitted)}">
+							<label for="q4" class="control-label text-white"><span ng-show="regisForm.q4.$invalid && (regisForm.q4.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> Q4 คุณคาดหวังอะไรจากการปฏิบัติงานกับทีม TEDxKMUTT?</label>
+							<textarea class="form-control text-white bg-black" rows="5" name="q4" ng-model="formData.q4" required></textarea>
+						</div>
+					</div>
+				</div><!-- End of Q4 -->
+				
+				<div class="form-group">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-danger">สมัคร!</button>
+					</div>
+				</div>
+				
+				
+			</form><!-- Enf of Register Form -->
