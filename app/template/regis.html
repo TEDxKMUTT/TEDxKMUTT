@@ -55,7 +55,7 @@
 		<div class="form-group" ng-class="{'has-error': checkDiv.gender.select == null && submitted}">
 			<label class="control-label text-white checkbox-div-label"><span ng-show="checkDiv.gender.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> เพศ</label>
 			<div class="checkbox-div">
-				<div class="col-sm-4" ng-repeat="item in checkDiv.gender.data">
+				<div class="col-sm-4" ng-repeat="item in checkDiv.gender.val">
 					<a href="" ng-click="selectOption('checkDiv','gender',$index)">
 						<div class="option" ng-class="{'activeChoice': $index == checkDiv.gender.select}">
 							<i class="fa fa-2x fa-{{checkDiv.gender.icon[$index]}}"></i>

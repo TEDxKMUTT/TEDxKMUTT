@@ -23,6 +23,7 @@ app.config(function($routeProvider, $locationProvider){
   // $locationProvider.html5Mode(true);
 
 });
+
 // Controller
 app.controller('homeController', function($scope, $sce) {
   $scope.page = 'tedx';
@@ -79,7 +80,7 @@ app.controller('date', function($scope) {
   $scope.year = this.dates.getFullYear();
 });
 //
-app.controller('regController',['$scope','$location','$anchorScroll',function($scope,$location,$anchorScroll){
+app.controller('regController',['$scope', '$http', '$location','$anchorScroll',function($scope,$http,$location,$anchorScroll){
 	//Form data
 	$scope.formData = {};
 	$scope.formData.prefix = "--";
@@ -122,7 +123,8 @@ app.controller('regController',['$scope','$location','$anchorScroll',function($s
 
 	$scope.checkDiv.gender = {};
 	$scope.checkDiv.gender.icon = ["mars","venus","transgender"]
-	$scope.checkDiv.gender.data = ["ชาย","หญิง","อื่นๆ"];
+	$scope.checkDiv.gender.data = ["M","F","O"];
+	$scope.checkDiv.gender.val = ["ชาย","หญิง","อื่นๆ"];
 	$scope.checkDiv.gender.select = null;
 
 	$scope.checkDiv.group = {};
@@ -139,12 +141,14 @@ app.controller('regController',['$scope','$location','$anchorScroll',function($s
 
 	$scope.submitForm = function(formData)
 		{
+      // console.log("TESt");
 		$scope.submitted = true;
-
+    // console.log($scope.formData);
 		if($scope.regisForm.$valid && $scope.dropdown.prefix.select != null && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null)
 			{
 			console.log($scope.formData);
 			//Sent to DB API
+      return $http.post('/api/reg_sav', $scope.formData);
 			}
 		else
 			{

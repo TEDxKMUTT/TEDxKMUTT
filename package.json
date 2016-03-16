@@ -4,7 +4,16 @@
   "description": "website source for TEDxKMUTT.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mongoose": "^4.4.6",
+    "morgan"          : "~1.1.1",
+    "body-parser"     : "~1.4.3",
+    "method-override" : "~2.1.1",
+    "mailcomposer": "^3.6.3",
+    "mailcomposer": "^3.6.3",
+    "mailgun-js": "^0.7.7",
+    "nunjucks": "^2.4.0",
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "angular-ui-bootstrap": "^1.2.4"
