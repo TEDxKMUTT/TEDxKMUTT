@@ -79,7 +79,8 @@ app.controller('date', function($scope) {
   this.dates = new Date();
   $scope.year = this.dates.getFullYear();
 });
-//
+
+//Registration Controller
 app.controller('regController',['$scope', '$http', '$location','$anchorScroll',function($scope,$http,$location,$anchorScroll){
 	//Form data
 	$scope.formData = {};
@@ -108,10 +109,12 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 
 	$scope.dropdown.prefix = {};
 	$scope.dropdown.prefix.data = ["นาย","นาง","นางสาว"];
+	$scope.dropdown.prefix.val = [];
 	$scope.dropdown.prefix.select = null;
 
 	$scope.dropdown.faculty = {};
 	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ"];
+	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arc","FIBO","MultiSci"];
 	$scope.dropdown.faculty.select = null;
 
 	$scope.dropdown.year = {};
@@ -129,14 +132,21 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 
 	$scope.checkDiv.group = {};
 	$scope.checkDiv.group.data = ["Product management","Curator","Creative"];
+	$scope.dropdown.group.val = ["PM","Cu","Cr"];
 	$scope.checkDiv.group.icon = ["archive","user","paint-brush"];
 	$scope.checkDiv.group.select = null;
+	
+	$scope.checkDiv.subPM = {};
+	$scope.checkDiv.subPM.data = ["Sponsor","Finance","Support"];
+	$scope.dropdown.subPM.val = ["PM","Cura","Crea"];
+	$scope.checkDiv.subPM.icon = ["archive","user","paint-brush"];
+	$scope.checkDiv.subPM.select = null;
 
 	//Select dropdown list
 	$scope.selectOption = function(type,name,index)
 		{
 		$scope[type][name].select = index;
-		$scope.formData[name] = $scope[type][name].data[index];
+		$scope.formData[name] = $scope[type][name].val[index];
 		}
 
 	$scope.submitForm = function(formData)
