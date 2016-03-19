@@ -19,7 +19,7 @@ module.exports = function(app) {
     PersonModel.create({
       prefix: req.body.prefix,
       name: req.body.name,
-      sname: req.body.lastname,
+      sname: req.body.lastName,
       nick: req.body.nickname,
       age: req.body.age,
       gender: req.body.gender,
@@ -37,7 +37,9 @@ module.exports = function(app) {
 
     },function(err,person){
       if(err) res.send("create error : "  + err);
-      mailer(req.body.name, req.body.email, req.body.group);
+      // console.log(req.body.lastname);
+      // console.log(req);
+      // mailer(req.body.name, req.body.email, req.body.group);
     });
 
   });
