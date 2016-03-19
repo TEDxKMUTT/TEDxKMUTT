@@ -96,6 +96,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.formData.email;
 	$scope.formData.phone;
 	$scope.formData.group;
+	$scope.formData.subGroup;
+	$scope.formData.subSubGroup;
 	$scope.formData.q1;
 	$scope.formData.q2;
 	$scope.formData.q3;
@@ -185,6 +187,11 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.checkDiv.group.icon = ["archive","user","paint-brush"];
 	$scope.checkDiv.group.select = null;
 	
+	$scope.subCase.subGroup = {};
+	$scope.subCase.subGroup.select;
+	$scope.subCase.subGroup.text;
+	$scope.subCase.subGroup.valid = true;
+	
 	$scope.checkDiv.subPM = {};
 	$scope.checkDiv.subPM.data = ["Sponsor","Finance","Support","Documentation","Contractor"];
 	$scope.checkDiv.subPM.val = ["Spo","Fin","Sup","Doc","Con"];
@@ -196,6 +203,11 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.checkDiv.subCr.val = ["PR","DP","Sta","Act"];
 	$scope.checkDiv.subCr.icon = [];
 	$scope.checkDiv.subCr.select = null;
+	
+	$scope.subCase.subSubGroup = {};
+	$scope.subCase.subSubGroup.select;
+	$scope.subCase.subSubGroup.text;
+	$scope.subCase.subSubGroup.valid = true;
 	
 	$scope.checkDiv.subPR = {};
 	$scope.checkDiv.subPR.data = ["Creative","Marketing","Graphic Design","Copy Writing"];
@@ -236,17 +248,77 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.subCase.department.text = $scope.dropdown[depObj].data[index];
 		$scope.subCase.department.select = $scope.dropdown[depObj].val[index];
 		}
+	
+	$scope.selectGroup = function(index)
+		{
+		$scope.checkDiv.group.select = index;
+		$scope.checkDiv.group.text = $scope.checkDiv.group.data[index];
+		$scope.formData.group = $scope.checkDiv.group.val[index];
+		
+		$scope.subCase.subGroup.select = "sub"+$scope.checkDiv.group.val[index];
+		
+		//Check if this group have sub group
+		if($scope.checkDiv.hasOwnProperty($scope.subCase.subGroup.select))
+			{
+			$scope.subCase.subGroup.text = $scope.checkDiv.group.data[index];
+			$scope.subCase.subGroup.valid = false;
+			}
+		else
+			{
+			$scope.subCase.subGroup.select = null;
+			$scope.subCase.subGroup.text = null;
+			$scope.subCase.subGroup.valid = true;
+			}
+		$scope.formData.subGroup = null;
+		$scope.formData.subSubGroup = null;
+		}
+	
+	$scope.selectSubGroup = function(index)
+		{
+		var subGroup = $scope.subCase.subGroup.select;
+		
+		$scope.checkDiv[subGroup].select = index;
+		$scope.checkDiv[subGroup].text = $scope.checkDiv[subGroup].data[index];
+		$scope.formData.subGroup = $scope.checkDiv[subGroup].val[index];
+		
+		$scope.subCase.subSubGroup.select = "sub"+$scope.checkDiv[subGroup].val[index];
+		
+		//Check if this sub group have sub of sub group
+		if($scope.checkDiv.hasOwnProperty($scope.subCase.subSubGroup.select))
+			{
+			$scope.subCase.subSubGroup.text = $scope.checkDiv[subGroup].data[index];
+			$scope.subCase.subSubGroup.valid = false;
+			}
+		else
+			{
+			$scope.subCase.subSubGroup.select = null;
+			$scope.subCase.subSubGroup.text = null;
+			$scope.subCase.subSubGroup.valid = true;
+			}
+		$scope.formData.subSubGroup = null;
+		}
+	
+	$scope.selectSubSubGroup = function(index)
+		{
+		var subSubGroup = $scope.subCase.subSubGroup.select;
+		
+		$scope.checkDiv[subSubGroup].select = index;
+		$scope.checkDiv[subSubGroup].text = $scope.checkDiv[subSubGroup].data[index];
+		$scope.formData.subSubGroup = $scope.checkDiv[subSubGroup].val[index];
+		$scope.subCase.subSubGroup.valid = true;
+		}
 
 	$scope.submitForm = function(formData)
 		{
-      // console.log("TESt");
+      	// console.log("TESt");
 		$scope.submitted = true;
-    // console.log($scope.formData);
+		
+    	// console.log($scope.formData);
 		if($scope.regisForm.$valid && $scope.dropdown.prefix.select != null && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null)
 			{
 			console.log($scope.formData);
 			//Sent to DB API
-      return $http.post('/api/reg_sav', $scope.formData);
+      	return $http.post('/api/reg_sav', $scope.formData);
 			}
 		else
 			{
