@@ -123,8 +123,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 
 	$scope.checkDiv.gender = {};
 	$scope.checkDiv.gender.icon = ["mars","venus","transgender"]
-	$scope.checkDiv.gender.data = ["M","F","O"];
-	$scope.checkDiv.gender.val = ["ชาย","หญิง","อื่นๆ"];
+	$scope.checkDiv.gender.val = ["M","F","O"];
+	$scope.checkDiv.gender.data = ["ชาย","หญิง","อื่นๆ"];
 	$scope.checkDiv.gender.select = null;
 
 	$scope.checkDiv.group = {};
