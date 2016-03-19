@@ -114,8 +114,43 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 
 	$scope.dropdown.faculty = {};
 	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ"];
-	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arc","FIBO","MultiSci"];
+	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arch","FIBO","MultiSci"];
 	$scope.dropdown.faculty.select = null;
+	
+	$scope.dropdown.depEng = {};
+	$scope.dropdown.depEng.data = ["วิศวกรรมเคมี","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการและเมคคาทรอนิกส์","วิศวกรรมคอมพิวเตอร์","วิศวกรรมระบบควบคุมและเครื่องมือวัด","วิศวกรรมสิ่งแวดล้อม","วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์","วิศวกรรมวัสดุและเครื่องมือ"];
+	$scope.dropdown.depEng.val = ["CHM","ME","EE","CE","PEMCE","CPE","INC","ENV","ENE","TME"];
+	$scope.dropdown.depEng.select = null;
+	
+	$scope.dropdown.depSci = {};
+	$scope.dropdown.depSci.data = ["คณิตศาสตร์","เคมี","ฟิสิกส์ประยุกต์","จุลชีววิทยา","วิทยาการคอมพิวเตอร์ประยุกต์","สถิติ","วิทยาศาสตร์และเทคโนโลยีการอาหาร"];
+	$scope.dropdown.depSci.val = ["MTH","CHE","PHY","MIC","CS","STA","FS"];
+	$scope.dropdown.depSci.select = null;
+	
+	$scope.dropdown.depInd = {};
+	$scope.dropdown.depInd.data = ["เทคโนโลยีการพิมพ์และบรรจุภัณฑ์","เทคโนโลยีอุตสาหกรรม","วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการ","เทคโนโลยีการศึกษาและการสื่อสารมวลชน","เทคโนโลยีมีเดีย","มีเดียอาตส์","มีเดียทางการแพทย์และวิทยาศาสตร์"];
+	$scope.dropdown.depInd.val = ["PRI","InT","CM","ME","EE","CE","PE","EDU","MET","MEA","MES"];
+	$scope.dropdown.depInd.select = null;
+	
+	$scope.dropdown.depIT = {};
+	$scope.dropdown.depIT.data = ["วิทยาการคอมพิวเตอร์","เทคโนโลยีสารสนเทศ"];
+	$scope.dropdown.depIT.val = ["CS","IT"];
+	$scope.dropdown.depIT.select = null;
+	
+	$scope.dropdown.depArch = {};
+	$scope.dropdown.depArch.data = ["สถาปัตยกรรม","สถาปัตยกรรมภายใน","การออกแบบอุตสาหกรรม","ออกแบบนิเทศศิลป์"];
+	$scope.dropdown.depArch.val = ["ARC","INT","IND","COM"];
+	$scope.dropdown.depArch.select = null;
+	
+	$scope.dropdown.depFIBO = {};
+	$scope.dropdown.depFIBO.data = ["วิศวกรรมหุ่นยนต์และระบบอัตโนมัติ"];
+	$scope.dropdown.depFIBO.val = ["RA"];
+	$scope.dropdown.depFIBO.select = null;
+	
+	$scope.dropdown.depMultiSci = {};
+	$scope.dropdown.depMultiSci.data = ["วิทยาศาสตร์และเทคโนโลยี"];
+	$scope.dropdown.depMultiSci.val = ["ST"];
+	$scope.dropdown.depMultiSci.select = null;
 
 	$scope.dropdown.year = {};
 	$scope.dropdown.year.data = ['1','2','3','4'];
@@ -132,15 +167,33 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 
 	$scope.checkDiv.group = {};
 	$scope.checkDiv.group.data = ["Product management","Curator","Creative"];
-	$scope.dropdown.group.val = ["PM","Cu","Cr"];
+	$scope.checkDiv.group.val = ["PM","Cu","Cr"];
 	$scope.checkDiv.group.icon = ["archive","user","paint-brush"];
 	$scope.checkDiv.group.select = null;
 	
 	$scope.checkDiv.subPM = {};
-	$scope.checkDiv.subPM.data = ["Sponsor","Finance","Support"];
-	$scope.dropdown.subPM.val = ["PM","Cura","Crea"];
-	$scope.checkDiv.subPM.icon = ["archive","user","paint-brush"];
+	$scope.checkDiv.subPM.data = ["Sponsor","Finance","Support","Documentation","Contractor"];
+	$scope.checkDiv.subPM.val = ["Spo","Fin","Sup","Doc","Con"];
+	$scope.checkDiv.subPM.icon = [];
 	$scope.checkDiv.subPM.select = null;
+	
+	$scope.checkDiv.subCr = {};
+	$scope.checkDiv.subCr.data = ["Public Relation","Digital Production","Stage","Activity"];
+	$scope.checkDiv.subCr.val = ["PR","DP","Sta","Act"];
+	$scope.checkDiv.subCr.icon = [];
+	$scope.checkDiv.subCr.select = null;
+	
+	$scope.checkDiv.subPR = {};
+	$scope.checkDiv.subPR.data = ["Creative","Marketing","Graphic Design","Copy Writing"];
+	$scope.checkDiv.subPR.val = ["Cre","Mar","GD","CW"];
+	$scope.checkDiv.subPR.icon = [];
+	$scope.checkDiv.subPR.select = null;
+	
+	$scope.checkDiv.subDP = {};
+	$scope.checkDiv.subDP.data = ["Photographs","Video Recording","Process Monitoring"];
+	$scope.checkDiv.subDP.val = ["Pho","Vid","PMo"];
+	$scope.checkDiv.subDP.icon = [];
+	$scope.checkDiv.subDP.select = null;
 
 	//Select dropdown list
 	$scope.selectOption = function(type,name,index)
