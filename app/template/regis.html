@@ -115,7 +115,7 @@
 			<div class="col-sm-12">
 				<div ng-class="{'has-error': regisForm.studentID.$invalid && (regisForm.studentID.$touched || submitted)}">
 					<label for="studentID" class="control-label text-white"><span ng-show="regisForm.studentID.$invalid && (regisForm.studentID.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> รหัสนักศึกษา</label>
-					<input type="number" class="form-control text-white bg-black" name="studentID" ng-model="formData.studentID" required>
+					<input type="number" class="form-control text-white bg-black" name="studentID" ng-model="formData.studentID" ng-minlength="11" ng-maxlength="11" required>
 				</div>
 				<!-- End of Student ID -->
 			</div>
@@ -157,7 +157,7 @@
 		
 		<!-- Sub Group -->
 		<div class="form-group" ng-class="{'has-error': !subCase.subGroup.valid && submitted}" ng-hide="subCase.subGroup.select == NULL">
-			<label class="control-label text-white checkbox-div-label"><span ng-show="!subCase.subGroup.valid && submitted" class="glyphicon glyphicon-exclamation-sign"></span> {{subCase.subGroup.text}} ></label>
+			<label class="control-label text-white checkbox-div-label"><span ng-show="!subCase.subGroup.valid && submitted" class="glyphicon glyphicon-exclamation-sign"></span>{{subCase.subGroup.text}} <i class="fa fa-arrow-right"></i></label>
 			<div class="checkbox-div">
 				<div class="col-sm-4" ng-repeat="item in checkDiv[subCase.subGroup.select].data">
 					<a href="" ng-click="selectSubGroup($index)">
@@ -173,7 +173,7 @@
 		
 		<!-- Sub Sub Group -->
 		<div class="form-group" ng-class="{'has-error': !subCase.subSubGroup.valid && submitted}" ng-hide="subCase.subSubGroup.select == NULL">
-			<label class="control-label text-white checkbox-div-label"><span ng-show="!subCase.subSubGroup.valid && submitted" class="glyphicon glyphicon-exclamation-sign"></span> {{subCase.subSubGroup.text}} ></label>
+			<label class="control-label text-white checkbox-div-label"><span ng-show="!subCase.subSubGroup.valid && submitted" class="glyphicon glyphicon-exclamation-sign"></span> {{subCase.subSubGroup.text}} <i class="fa fa-arrow-right"></i></label>
 			<div class="checkbox-div">
 				<div class="col-sm-4" ng-repeat="item in checkDiv[subCase.subSubGroup.select].data">
 					<a href="" ng-click="selectSubSubGroup($index)">

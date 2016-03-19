@@ -191,7 +191,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.checkDiv.group = {};
 	$scope.checkDiv.group.data = ["Product management","Curator","Creative"];
 	$scope.checkDiv.group.val = ["PM","Cu","Cr"];
-	$scope.checkDiv.group.icon = ["archive","user","paint-brush"];
+	$scope.checkDiv.group.icon = ["briefcase","binoculars","paint-brush"];
 	$scope.checkDiv.group.select = null;
 	
 	$scope.subCase.subGroup = {};
@@ -202,13 +202,13 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.checkDiv.subPM = {};
 	$scope.checkDiv.subPM.data = ["Sponsor","Finance","Support","Documentation","Contractor"];
 	$scope.checkDiv.subPM.val = ["Spo","Fin","Sup","Doc","Con"];
-	$scope.checkDiv.subPM.icon = [];
+	$scope.checkDiv.subPM.icon = ["bank","money","archive","book","edit"];
 	$scope.checkDiv.subPM.select = null;
 	
 	$scope.checkDiv.subCr = {};
 	$scope.checkDiv.subCr.data = ["Public Relation","Digital Production","Stage","Activity"];
 	$scope.checkDiv.subCr.val = ["PR","DP","Sta","Act"];
-	$scope.checkDiv.subCr.icon = [];
+	$scope.checkDiv.subCr.icon = ["comments-o","tv","bullhorn","users"];
 	$scope.checkDiv.subCr.select = null;
 	
 	$scope.subCase.subSubGroup = {};
@@ -219,13 +219,13 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.checkDiv.subPR = {};
 	$scope.checkDiv.subPR.data = ["Creative","Marketing","Graphic Design","Copy Writing"];
 	$scope.checkDiv.subPR.val = ["Cre","Mar","GD","CW"];
-	$scope.checkDiv.subPR.icon = [];
+	$scope.checkDiv.subPR.icon = ["paper-plane","line-chart","photo","file-text-o"];
 	$scope.checkDiv.subPR.select = null;
 	
 	$scope.checkDiv.subDP = {};
 	$scope.checkDiv.subDP.data = ["Photographs","Video Recording","Process Monitoring"];
 	$scope.checkDiv.subDP.val = ["Pho","Vid","PMo"];
-	$scope.checkDiv.subDP.icon = [];
+	$scope.checkDiv.subDP.icon = ["camera","video-camera","area-chart"];
 	$scope.checkDiv.subDP.select = null;
 
 	//Select dropdown list
