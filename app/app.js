@@ -84,7 +84,6 @@ app.controller('date', function($scope) {
 app.controller('regController',['$scope', '$http', '$location','$anchorScroll',function($scope,$http,$location,$anchorScroll){
 	//Form data
 	$scope.formData = {};
-	$scope.formData.prefix;
 	$scope.formData.name;
 	$scope.formData.lastname;
 	$scope.formData.nickname;
@@ -102,9 +101,17 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.formData.q2;
 	$scope.formData.q3;
 	$scope.formData.q4;
+	$scope.formData.curatorQ1;
+	$scope.formData.curatorQ2;
+	$scope.formData.creativeQ1;
+	$scope.formData.pmQ1;
+	$scope.formData.speaker;
+	
+	
 
 	//Is Submit button hit?
 	$scope.submitted = false;
+	$scope.warning = false;
 
 	//Store sub case status
 	$scope.subCase = {};
@@ -281,6 +288,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.checkDiv[subGroup].text = $scope.checkDiv[subGroup].data[index];
 		$scope.formData.subGroup = $scope.checkDiv[subGroup].val[index];
 		
+		$scope.subCase.subGroup.valid = true;
+		
 		$scope.subCase.subSubGroup.select = "sub"+$scope.checkDiv[subGroup].val[index];
 		
 		//Check if this sub group have sub of sub group
@@ -314,15 +323,16 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.submitted = true;
 		
     	// console.log($scope.formData);
-		if($scope.regisForm.$valid && $scope.dropdown.prefix.select != null && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null)
+		if($scope.regisForm.$valid && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null && $scope.subCase.subGroup.valid && $scope.subCase.subSubGroup.valid && (($scope.checkDiv.group.select == 0 && $scope.formData.pmQ1 != null) || ($scope.checkDiv.group.select == 1 && $scope.formData.curatorQ1 != null && $scope.formData.curatorQ2 != null) || ($scope.checkDiv.group.select == 2 && $scope.formData.creativeQ1 != null)))
 			{
+			$scope.warning = false;
 			console.log($scope.formData);
 			//Sent to DB API
-      	return $http.post('/api/reg_sav', $scope.formData);
+      		return $http.post('/api/reg_sav', $scope.formData);
 			}
 		else
 			{
-				console.log($scope.formData);
+			$scope.warning = true;
 			$location.hash('top');
       		$anchorScroll();
 			}
