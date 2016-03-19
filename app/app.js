@@ -84,15 +84,15 @@ app.controller('date', function($scope) {
 app.controller('regController',['$scope', '$http', '$location','$anchorScroll',function($scope,$http,$location,$anchorScroll){
 	//Form data
 	$scope.formData = {};
-	$scope.formData.prefix = "--";
+	$scope.formData.prefix;
 	$scope.formData.name;
 	$scope.formData.lastname;
 	$scope.formData.nickname;
 	$scope.formData.age;
 	$scope.formData.gender;
-	$scope.formData.faculty = "--";
+	$scope.formData.faculty;
 	$scope.formData.department;
-	$scope.formData.year = "--";
+	$scope.formData.year;
 	$scope.formData.email;
 	$scope.formData.phone;
 	$scope.formData.group;
@@ -104,57 +104,71 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	//Is Submit button hit?
 	$scope.submitted = false;
 
+	//Store sub case status
+	$scope.subCase = {};
+	
 	//Dropdown data
 	$scope.dropdown = {};
 
 	$scope.dropdown.prefix = {};
 	$scope.dropdown.prefix.data = ["นาย","นาง","นางสาว"];
-	$scope.dropdown.prefix.val = [];
+	$scope.dropdown.prefix.val = ["Mr","Mrs","Ms"]
 	$scope.dropdown.prefix.select = null;
+	$scope.dropdown.prefix.text = "--";
 
 	$scope.dropdown.faculty = {};
-	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ"];
-	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arch","FIBO","MultiSci"];
+	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ","อื่นๆ"];
+	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arch","FIBO","MultiSci","Other"];
 	$scope.dropdown.faculty.select = null;
+	$scope.dropdown.faculty.text = "--";
+	
+	$scope.subCase.department = {};
+	$scope.subCase.department.select = null;
+	$scope.subCase.department.text = "--";
 	
 	$scope.dropdown.depEng = {};
-	$scope.dropdown.depEng.data = ["วิศวกรรมเคมี","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการและเมคคาทรอนิกส์","วิศวกรรมคอมพิวเตอร์","วิศวกรรมระบบควบคุมและเครื่องมือวัด","วิศวกรรมสิ่งแวดล้อม","วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์","วิศวกรรมวัสดุและเครื่องมือ"];
-	$scope.dropdown.depEng.val = ["CHM","ME","EE","CE","PEMCE","CPE","INC","ENV","ENE","TME"];
+	$scope.dropdown.depEng.data = ["วิศวกรรมเคมี","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการและเมคคาทรอนิกส์","วิศวกรรมคอมพิวเตอร์","วิศวกรรมระบบควบคุมและเครื่องมือวัด","วิศวกรรมสิ่งแวดล้อม","วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์","วิศวกรรมวัสดุและเครื่องมือ","อื่นๆ"];
+	$scope.dropdown.depEng.val = ["CHM","ME","EE","CE","PEMCE","CPE","INC","ENV","ENE","TME","Other"];
 	$scope.dropdown.depEng.select = null;
+	$scope.dropdown.depEng.text = "--";
 	
 	$scope.dropdown.depSci = {};
-	$scope.dropdown.depSci.data = ["คณิตศาสตร์","เคมี","ฟิสิกส์ประยุกต์","จุลชีววิทยา","วิทยาการคอมพิวเตอร์ประยุกต์","สถิติ","วิทยาศาสตร์และเทคโนโลยีการอาหาร"];
-	$scope.dropdown.depSci.val = ["MTH","CHE","PHY","MIC","CS","STA","FS"];
+	$scope.dropdown.depSci.data = ["คณิตศาสตร์","เคมี","ฟิสิกส์ประยุกต์","จุลชีววิทยา","วิทยาการคอมพิวเตอร์ประยุกต์","สถิติ","วิทยาศาสตร์และเทคโนโลยีการอาหาร","อื่นๆ"];
+	$scope.dropdown.depSci.val = ["MTH","CHE","PHY","MIC","CS","STA","FS","Other"];
 	$scope.dropdown.depSci.select = null;
 	
 	$scope.dropdown.depInd = {};
-	$scope.dropdown.depInd.data = ["เทคโนโลยีการพิมพ์และบรรจุภัณฑ์","เทคโนโลยีอุตสาหกรรม","วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการ","เทคโนโลยีการศึกษาและการสื่อสารมวลชน","เทคโนโลยีมีเดีย","มีเดียอาตส์","มีเดียทางการแพทย์และวิทยาศาสตร์"];
-	$scope.dropdown.depInd.val = ["PRI","InT","CM","ME","EE","CE","PE","EDU","MET","MEA","MES"];
+	$scope.dropdown.depInd.data = ["เทคโนโลยีการพิมพ์และบรรจุภัณฑ์","เทคโนโลยีอุตสาหกรรม","วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการ","เทคโนโลยีการศึกษาและการสื่อสารมวลชน","เทคโนโลยีมีเดีย","มีเดียอาตส์","มีเดียทางการแพทย์และวิทยาศาสตร์","อื่นๆ"];
+	$scope.dropdown.depInd.val = ["PRI","InT","CM","ME","EE","CE","PE","EDU","MET","MEA","MES","Other"];
 	$scope.dropdown.depInd.select = null;
+	$scope.dropdown.depInd.text = "--";
 	
 	$scope.dropdown.depIT = {};
-	$scope.dropdown.depIT.data = ["วิทยาการคอมพิวเตอร์","เทคโนโลยีสารสนเทศ"];
+	$scope.dropdown.depIT.data = ["วิทยาการคอมพิวเตอร์","เทคโนโลยีสารสนเทศ","อื่นๆ"];
 	$scope.dropdown.depIT.val = ["CS","IT"];
 	$scope.dropdown.depIT.select = null;
 	
 	$scope.dropdown.depArch = {};
-	$scope.dropdown.depArch.data = ["สถาปัตยกรรม","สถาปัตยกรรมภายใน","การออกแบบอุตสาหกรรม","ออกแบบนิเทศศิลป์"];
-	$scope.dropdown.depArch.val = ["ARC","INT","IND","COM"];
+	$scope.dropdown.depArch.data = ["สถาปัตยกรรม","สถาปัตยกรรมภายใน","การออกแบบอุตสาหกรรม","ออกแบบนิเทศศิลป์","อื่นๆ"];
+	$scope.dropdown.depArch.val = ["ARC","INT","IND","COM","Other"];
 	$scope.dropdown.depArch.select = null;
 	
 	$scope.dropdown.depFIBO = {};
-	$scope.dropdown.depFIBO.data = ["วิศวกรรมหุ่นยนต์และระบบอัตโนมัติ"];
-	$scope.dropdown.depFIBO.val = ["RA"];
+	$scope.dropdown.depFIBO.data = ["วิศวกรรมหุ่นยนต์และระบบอัตโนมัติ","อื่นๆ"];
+	$scope.dropdown.depFIBO.val = ["RA","Other"];
 	$scope.dropdown.depFIBO.select = null;
+	$scope.dropdown.depFIBO.text = "--";
 	
 	$scope.dropdown.depMultiSci = {};
-	$scope.dropdown.depMultiSci.data = ["วิทยาศาสตร์และเทคโนโลยี"];
-	$scope.dropdown.depMultiSci.val = ["ST"];
+	$scope.dropdown.depMultiSci.data = ["วิทยาศาสตร์และเทคโนโลยี","อื่นๆ"];
+	$scope.dropdown.depMultiSci.val = ["ST","Other"];
 	$scope.dropdown.depMultiSci.select = null;
 
 	$scope.dropdown.year = {};
 	$scope.dropdown.year.data = ['1','2','3','4'];
+	$scope.dropdown.year.val = ['1','2','3','4'];
 	$scope.dropdown.year.select = null;
+	$scope.dropdown.year.text = "--";
 
 	//Checkbox-Div data
 	$scope.checkDiv = {};
@@ -199,7 +213,28 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.selectOption = function(type,name,index)
 		{
 		$scope[type][name].select = index;
+		$scope[type][name].text = $scope[type][name].data[index];
 		$scope.formData[name] = $scope[type][name].val[index];
+		}
+	
+	$scope.selectFaculty = function(index)
+		{
+		$scope.dropdown.faculty.select = index;
+		$scope.formData.faculty = $scope.dropdown.faculty.val[index];
+		$scope.dropdown.faculty.text = $scope.dropdown.faculty.data[index];
+		$scope.subCase.department.text = "--";
+		$scope.subCase.department.select = "dep"+$scope.dropdown.faculty.val[index];
+		$scope.formData.department = null;
+		}
+	
+	$scope.selectDepartment = function(index)
+		{
+		var depObj = $scope.subCase.department.select;
+		
+		$scope.dropdown[depObj].select = index;
+		$scope.formData.department = $scope.dropdown[depObj].val[index];
+		$scope.subCase.department.text = $scope.dropdown[depObj].data[index];
+		$scope.subCase.department.select = $scope.dropdown[depObj].val[index];
 		}
 
 	$scope.submitForm = function(formData)
@@ -215,6 +250,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 			}
 		else
 			{
+				console.log($scope.formData);
 			$location.hash('top');
       		$anchorScroll();
 			}
