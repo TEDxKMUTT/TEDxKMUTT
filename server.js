@@ -23,7 +23,7 @@ app.listen(app.get('port'), function () {
 app.use(express.static(__dirname + '/'));
 require('./app/routes.js')(app);
 
-// Test routes
+// Test routes .
 app.get('/', function(req, res){
   res.redirect('/index.html');
 });
