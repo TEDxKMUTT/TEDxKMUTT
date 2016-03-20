@@ -8,12 +8,36 @@
 //   $locationProvider.html5Mode(true);
 // });
 
-var mailer = require('./send_mail');
+// var mailer = require('./send_mail');
+var mailer = require('./smtp_mail');
+// var mailer = require('./send_mail_old');
 var PersonModel = require('./models/person_ted');
 
-module.exports = function(app) {
-  app.post('/api/reg_sav', function(req, res){
+var active_code = function(limit){
 
+  var microsec = new Date().getTime();
+  var accode = Math.floor(Math.random() * (94239847));
+  var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < limit; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+  text += accode;
+  text += "_" + microsec;
+
+  return text;
+}
+
+
+// var findObid = function()
+
+module.exports = function(app) {
+  const MAX = 15;
+  const MIN = 8;
+  var webUrl = 'https://tedxkmutt.com/';
+  var length =Math.floor(Math.random() * (MAX-MIN + 1) + MIN);
+  app.post('/api/reg_sav', function(req, res){
+    var activecodes = active_code(length);
     // PersonModel
     // console.log("ROUTEs : \n" + req.body.age);
     PersonModel.create({
@@ -33,14 +57,61 @@ module.exports = function(app) {
       q1: req.body.q1,
       q2: req.body.q2,
       q3: req.body.q3,
-      q4: req.body.q4
+      q4: req.body.q4,
+      accode: activecodes,
+      acurl: webUrl + activecodes,
+      status: 401
 
     },function(err,person){
       if(err) res.send("create error : "  + err);
       // console.log(req.body.lastname);
       // console.log(req);
       // mailer(req.body.name, req.body.email, req.body.group);
+      // console.log(activecodes);
+      // console.log(obid);
+      mailer(req.body.name, req.body.email, req.body.group, "TEDxKMUTT: Confirm your email", "https://tedxkmutt.com/active_code/" + activecodes);
     });
+
+  });
+
+  app.get('/ac/', function(req, res){
+    console.log("test2");
+    res.redirect('/active_codes/');
+  });
+
+  app.get('/active_code/:codei', function(req, res){
+    // PersonModel.findOne({accode: req.params.codei}, function(err, info){
+    //   if(err)
+    //     console.log("error : " + err);
+    //
+    //     // res.json(info.status);
+    //   // console.log(res.json(info));
+    //   console.log(info.status);
+    //   info.status = 200;
+    // });
+    PersonModel.findOne({accode: req.params.codei}, function(err, info){
+      console.log(info);
+      if(info==null){
+        res.send("nusss");
+      }else{
+        res.send(info);
+      }
+    });
+
+
+    // PersonModel.findOneAndUpdate({accode: req.params.codei}, {
+    //   status: 200,
+    // },
+    //    function(err, info){
+    //   if(err)
+    //     console.log("error : " + err);
+    //
+    //     // res.json(info.status);
+    //   // console.log(res.json(info));
+    //   //console.log(info.status);
+    // });
+
+
 
   });
 }
