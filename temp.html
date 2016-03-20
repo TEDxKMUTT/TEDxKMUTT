@@ -68,9 +68,11 @@
 
       <p id="name" style="font-size: 1.2em;">Hi! {{name}},</p>
       <p>Welcome to <b>TEDxKMUTT</b>.</p>
-      <p>You have registered in <b>{{type}}</b></p>
+      <p>You have registered in <b>{{group}}</b></p>
+      <p><b>{{sgroup}}</b></p>
+      <p><b>{{ssgroup}}</b></p>
       <p>
-        <br /> So, <i><b>please confirm your email.</b></i>
+        <!-- <br /> So, <i><b>please confirm your email.</b></i> -->
       </p>
     </div>
 
@@ -78,22 +80,11 @@
     background-color: #efefef;
     padding: 10px 8px;
     width: 80%;">
-      <p>Click the button or link below to confirm</p>
-      <div>
-        <a href="{{url}}" style="text-decoration: none; color: #fff;"><button id="confirm_btn" style="
-        border-radius: 0;
-        background-color: #FF2508;
-        color: #fff;
-        font-size: 1.25em;
-        padding: 0.685em 3.525em;
-        -webkit-appearance: none;
-        border: 0;
-        text-decoration: none;">Confirm</button></a>
-      </div>
-      <p>or</p>
-
-      <p><a href="{{url}}">{{url}}</a></p>
-
+      <p>Name: {{name}} {{surname}}</p>
+      <p>Nickname: {{nick}}</p>
+      <p>Age : {{age}}</p>
+      <p>Faculty: {{fac}}</p>
+      <p>Department: {{dep}}</p>
     </div>
 
     <div id="copy" style="margin-top: 10px;">

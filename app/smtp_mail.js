@@ -21,18 +21,25 @@ var auth = {
 // var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 var nodemailerMailgun = nodemailer.createTransport(auth);
 
-var creator = function(name, email, type, link_active) {
+// var creator = function(name, email, type, link_active) {
+var creator = function(data) {
 
   var mailing = [];
 
   var emailContent = nunjucks.render('temp.html', {
-    name: name,
-    type: type,
-    url: link_active,
+    name: data.name,
+    surname: data.lastName,
+    nick: data.nickname,
+    age: data.age,
+    group: data.groupFull,
+    sgroup: data.subGroupFull,
+    ssgroup: data.subSubGroupFull,
+    fac: data.facultyFull,
+    dep: data.departmentFull,
   });
 
   mailing.push({
-    user: email,
+    user: data.email,
     contents: emailContent
   });
 
@@ -42,7 +49,7 @@ var creator = function(name, email, type, link_active) {
 var sender = function(email, subject, html) {
   var deffered = Q.defer();
   nodemailerMailgun.sendMail({
-      from: 'Support TEDxKMUTT <support@tedxxx.com>',
+      from: 'Support TEDxKMUTT <support@tedxkmutt.com>',
       // from: 'support@tedxkmutt.com',
       to: email,
       subject: subject,
@@ -59,17 +66,37 @@ var sender = function(email, subject, html) {
   return deffered.promise;
 };
 
+// // link active
+// module.exports = function(name, email, type, subject, link_active){
+// // module.exports = function(name, email, type, subject){
+//
+//   var mailing = creator(name, email, type, link_active);
+//   // var mailing = creator(name, email, type, 'https://tedxkmutt.com/active/dummy234567890');
+//
+//   for(var i = mailing.length -1; i>= 0; i--){
+//     sender(mailing[i].user, subject, mailing[i].contents)
+//       .then(function (response){
+//         console.log(response + "\nname : " + name + "\nemail : " + email);
+//       })
+//       .catch(function (error){
+//         console.log("error : " + error)
+//       })
+//   }
+//
+// }
+
 // link active
-module.exports = function(name, email, type, subject, link_active){
+module.exports = function(data, subject){
 // module.exports = function(name, email, type, subject){
 
-  var mailing = creator(name, email, type, link_active);
+  // var mailing = creator(data.name, data.email, data.group, link_active);
+  var mailing = creator(data);
   // var mailing = creator(name, email, type, 'https://tedxkmutt.com/active/dummy234567890');
 
   for(var i = mailing.length -1; i>= 0; i--){
     sender(mailing[i].user, subject, mailing[i].contents)
       .then(function (response){
-        console.log(response + "\nname : " + name + "\nemail : " + email);
+        console.log(response + "\nname : " + data.name + "\nemail : " + data.email);
       })
       .catch(function (error){
         console.log("error : " + error)
