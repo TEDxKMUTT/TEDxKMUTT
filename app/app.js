@@ -79,44 +79,105 @@ app.controller('date', function($scope) {
   this.dates = new Date();
   $scope.year = this.dates.getFullYear();
 });
-//
+
+//Registration Controller
 app.controller('regController',['$scope', '$http', '$location','$anchorScroll',function($scope,$http,$location,$anchorScroll){
 	//Form data
 	$scope.formData = {};
-	$scope.formData.prefix = "--";
 	$scope.formData.name;
 	$scope.formData.lastname;
 	$scope.formData.nickname;
 	$scope.formData.age;
 	$scope.formData.gender;
-	$scope.formData.faculty = "--";
+	$scope.formData.faculty;
 	$scope.formData.department;
-	$scope.formData.year = "--";
+	$scope.formData.year;
 	$scope.formData.email;
 	$scope.formData.phone;
 	$scope.formData.group;
+	$scope.formData.subGroup;
+	$scope.formData.subSubGroup;
 	$scope.formData.q1;
 	$scope.formData.q2;
 	$scope.formData.q3;
 	$scope.formData.q4;
+	$scope.formData.curatorQ1;
+	$scope.formData.curatorQ2;
+	$scope.formData.creativeQ1;
+	$scope.formData.pmQ1;
+	$scope.formData.speaker;
+	
+	
 
 	//Is Submit button hit?
 	$scope.submitted = false;
+	$scope.warning = false;
 
+	//Store sub case status
+	$scope.subCase = {};
+	
 	//Dropdown data
 	$scope.dropdown = {};
 
 	$scope.dropdown.prefix = {};
 	$scope.dropdown.prefix.data = ["นาย","นาง","นางสาว"];
+	$scope.dropdown.prefix.val = ["Mr","Mrs","Ms"]
 	$scope.dropdown.prefix.select = null;
+	$scope.dropdown.prefix.text = "--";
 
 	$scope.dropdown.faculty = {};
-	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ"];
+	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ","อื่นๆ"];
+	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arch","FIBO","MultiSci","Other"];
 	$scope.dropdown.faculty.select = null;
+	$scope.dropdown.faculty.text = "--";
+	
+	$scope.subCase.department = {};
+	$scope.subCase.department.select = null;
+	$scope.subCase.department.text = "--";
+	
+	$scope.dropdown.depEng = {};
+	$scope.dropdown.depEng.data = ["วิศวกรรมเคมี","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการและเมคคาทรอนิกส์","วิศวกรรมคอมพิวเตอร์","วิศวกรรมระบบควบคุมและเครื่องมือวัด","วิศวกรรมสิ่งแวดล้อม","วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์","วิศวกรรมวัสดุและเครื่องมือ","อื่นๆ"];
+	$scope.dropdown.depEng.val = ["CHM","ME","EE","CE","PEMCE","CPE","INC","ENV","ENE","TME","Other"];
+	$scope.dropdown.depEng.select = null;
+	$scope.dropdown.depEng.text = "--";
+	
+	$scope.dropdown.depSci = {};
+	$scope.dropdown.depSci.data = ["คณิตศาสตร์","เคมี","ฟิสิกส์ประยุกต์","จุลชีววิทยา","วิทยาการคอมพิวเตอร์ประยุกต์","สถิติ","วิทยาศาสตร์และเทคโนโลยีการอาหาร","อื่นๆ"];
+	$scope.dropdown.depSci.val = ["MTH","CHE","PHY","MIC","CS","STA","FS","Other"];
+	$scope.dropdown.depSci.select = null;
+	
+	$scope.dropdown.depInd = {};
+	$scope.dropdown.depInd.data = ["เทคโนโลยีการพิมพ์และบรรจุภัณฑ์","เทคโนโลยีอุตสาหกรรม","วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการ","เทคโนโลยีการศึกษาและการสื่อสารมวลชน","เทคโนโลยีมีเดีย","มีเดียอาตส์","มีเดียทางการแพทย์และวิทยาศาสตร์","อื่นๆ"];
+	$scope.dropdown.depInd.val = ["PRI","InT","CM","ME","EE","CE","PE","EDU","MET","MEA","MES","Other"];
+	$scope.dropdown.depInd.select = null;
+	$scope.dropdown.depInd.text = "--";
+	
+	$scope.dropdown.depIT = {};
+	$scope.dropdown.depIT.data = ["วิทยาการคอมพิวเตอร์","เทคโนโลยีสารสนเทศ","อื่นๆ"];
+	$scope.dropdown.depIT.val = ["CS","IT"];
+	$scope.dropdown.depIT.select = null;
+	
+	$scope.dropdown.depArch = {};
+	$scope.dropdown.depArch.data = ["สถาปัตยกรรม","สถาปัตยกรรมภายใน","การออกแบบอุตสาหกรรม","ออกแบบนิเทศศิลป์","อื่นๆ"];
+	$scope.dropdown.depArch.val = ["ARC","INT","IND","COM","Other"];
+	$scope.dropdown.depArch.select = null;
+	
+	$scope.dropdown.depFIBO = {};
+	$scope.dropdown.depFIBO.data = ["วิศวกรรมหุ่นยนต์และระบบอัตโนมัติ","อื่นๆ"];
+	$scope.dropdown.depFIBO.val = ["RA","Other"];
+	$scope.dropdown.depFIBO.select = null;
+	$scope.dropdown.depFIBO.text = "--";
+	
+	$scope.dropdown.depMultiSci = {};
+	$scope.dropdown.depMultiSci.data = ["วิทยาศาสตร์และเทคโนโลยี","อื่นๆ"];
+	$scope.dropdown.depMultiSci.val = ["ST","Other"];
+	$scope.dropdown.depMultiSci.select = null;
 
 	$scope.dropdown.year = {};
 	$scope.dropdown.year.data = ['1','2','3','4'];
+	$scope.dropdown.year.val = ['1','2','3','4'];
 	$scope.dropdown.year.select = null;
+	$scope.dropdown.year.text = "--";
 
 	//Checkbox-Div data
 	$scope.checkDiv = {};
@@ -129,29 +190,149 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 
 	$scope.checkDiv.group = {};
 	$scope.checkDiv.group.data = ["Product management","Curator","Creative"];
-	$scope.checkDiv.group.icon = ["archive","user","paint-brush"];
+	$scope.checkDiv.group.val = ["PM","Cu","Cr"];
+	$scope.checkDiv.group.icon = ["briefcase","binoculars","paint-brush"];
 	$scope.checkDiv.group.select = null;
+	
+	$scope.subCase.subGroup = {};
+	$scope.subCase.subGroup.select;
+	$scope.subCase.subGroup.text;
+	$scope.subCase.subGroup.valid = true;
+	
+	$scope.checkDiv.subPM = {};
+	$scope.checkDiv.subPM.data = ["Sponsor","Finance","Support","Documentation","Contractor"];
+	$scope.checkDiv.subPM.val = ["Spo","Fin","Sup","Doc","Con"];
+	$scope.checkDiv.subPM.icon = ["bank","money","archive","book","edit"];
+	$scope.checkDiv.subPM.select = null;
+	
+	$scope.checkDiv.subCr = {};
+	$scope.checkDiv.subCr.data = ["Public Relation","Digital Production","Stage","Activity"];
+	$scope.checkDiv.subCr.val = ["PR","DP","Sta","Act"];
+	$scope.checkDiv.subCr.icon = ["comments-o","tv","bullhorn","users"];
+	$scope.checkDiv.subCr.select = null;
+	
+	$scope.subCase.subSubGroup = {};
+	$scope.subCase.subSubGroup.select;
+	$scope.subCase.subSubGroup.text;
+	$scope.subCase.subSubGroup.valid = true;
+	
+	$scope.checkDiv.subPR = {};
+	$scope.checkDiv.subPR.data = ["Creative","Marketing","Graphic Design","Copy Writing"];
+	$scope.checkDiv.subPR.val = ["Cre","Mar","GD","CW"];
+	$scope.checkDiv.subPR.icon = ["paper-plane","line-chart","photo","file-text-o"];
+	$scope.checkDiv.subPR.select = null;
+	
+	$scope.checkDiv.subDP = {};
+	$scope.checkDiv.subDP.data = ["Photographs","Video Recording","Process Monitoring"];
+	$scope.checkDiv.subDP.val = ["Pho","Vid","PMo"];
+	$scope.checkDiv.subDP.icon = ["camera","video-camera","area-chart"];
+	$scope.checkDiv.subDP.select = null;
 
 	//Select dropdown list
 	$scope.selectOption = function(type,name,index)
 		{
 		$scope[type][name].select = index;
-		$scope.formData[name] = $scope[type][name].data[index];
+		$scope[type][name].text = $scope[type][name].data[index];
+		$scope.formData[name] = $scope[type][name].val[index];
+		}
+	
+	$scope.selectFaculty = function(index)
+		{
+		$scope.dropdown.faculty.select = index;
+		$scope.formData.faculty = $scope.dropdown.faculty.val[index];
+		$scope.dropdown.faculty.text = $scope.dropdown.faculty.data[index];
+		$scope.subCase.department.text = "--";
+		$scope.subCase.department.select = "dep"+$scope.dropdown.faculty.val[index];
+		$scope.formData.department = null;
+		}
+	
+	$scope.selectDepartment = function(index)
+		{
+		var depObj = $scope.subCase.department.select;
+		
+		$scope.dropdown[depObj].select = index;
+		$scope.formData.department = $scope.dropdown[depObj].val[index];
+		$scope.subCase.department.text = $scope.dropdown[depObj].data[index];
+		$scope.subCase.department.select = $scope.dropdown[depObj].val[index];
+		}
+	
+	$scope.selectGroup = function(index)
+		{
+		$scope.checkDiv.group.select = index;
+		$scope.checkDiv.group.text = $scope.checkDiv.group.data[index];
+		$scope.formData.group = $scope.checkDiv.group.val[index];
+		
+		$scope.subCase.subGroup.select = "sub"+$scope.checkDiv.group.val[index];
+		
+		//Check if this group have sub group
+		if($scope.checkDiv.hasOwnProperty($scope.subCase.subGroup.select))
+			{
+			$scope.subCase.subGroup.text = $scope.checkDiv.group.data[index];
+			$scope.subCase.subGroup.valid = false;
+			}
+		else
+			{
+			$scope.subCase.subGroup.select = null;
+			$scope.subCase.subGroup.text = null;
+			$scope.subCase.subGroup.valid = true;
+			}
+		$scope.formData.subGroup = null;
+		$scope.formData.subSubGroup = null;
+		}
+	
+	$scope.selectSubGroup = function(index)
+		{
+		var subGroup = $scope.subCase.subGroup.select;
+		
+		$scope.checkDiv[subGroup].select = index;
+		$scope.checkDiv[subGroup].text = $scope.checkDiv[subGroup].data[index];
+		$scope.formData.subGroup = $scope.checkDiv[subGroup].val[index];
+		
+		$scope.subCase.subGroup.valid = true;
+		
+		$scope.subCase.subSubGroup.select = "sub"+$scope.checkDiv[subGroup].val[index];
+		
+		//Check if this sub group have sub of sub group
+		if($scope.checkDiv.hasOwnProperty($scope.subCase.subSubGroup.select))
+			{
+			$scope.subCase.subSubGroup.text = $scope.checkDiv[subGroup].data[index];
+			$scope.subCase.subSubGroup.valid = false;
+			}
+		else
+			{
+			$scope.subCase.subSubGroup.select = null;
+			$scope.subCase.subSubGroup.text = null;
+			$scope.subCase.subSubGroup.valid = true;
+			}
+		$scope.formData.subSubGroup = null;
+		}
+	
+	$scope.selectSubSubGroup = function(index)
+		{
+		var subSubGroup = $scope.subCase.subSubGroup.select;
+		
+		$scope.checkDiv[subSubGroup].select = index;
+		$scope.checkDiv[subSubGroup].text = $scope.checkDiv[subSubGroup].data[index];
+		$scope.formData.subSubGroup = $scope.checkDiv[subSubGroup].val[index];
+		$scope.subCase.subSubGroup.valid = true;
 		}
 
 	$scope.submitForm = function(formData)
 		{
-      // console.log("TESt");
+      	// console.log("TESt");
 		$scope.submitted = true;
-    // console.log($scope.formData);
-		if($scope.regisForm.$valid && $scope.dropdown.prefix.select != null && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null)
+		
+    	// console.log($scope.formData);
+		if($scope.regisForm.$valid && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null && $scope.subCase.subGroup.valid && $scope.subCase.subSubGroup.valid && (($scope.checkDiv.group.select == 0 && $scope.formData.pmQ1 != null) || ($scope.checkDiv.group.select == 1 && $scope.formData.curatorQ1 != null && $scope.formData.curatorQ2 != null) || ($scope.checkDiv.group.select == 2 && $scope.formData.creativeQ1 != null)))
 			{
+			$scope.warning = false;
 			console.log($scope.formData);
 			//Sent to DB API
-      return $http.post('/api/reg_sav', $scope.formData);
+      		return $http.post('/api/reg_sav', $scope.formData);
 			}
 		else
 			{
+			$scope.warning = true;
 			$location.hash('top');
       		$anchorScroll();
 			}
