@@ -17,14 +17,17 @@ input[type=number]::-webkit-outer-spin-button {
 	padding: 10px;
 	border-radius: 5px;
 	margin-bottom: 10px;
-	color: white;
-	background-color: black;
 }
 .option:hover {
 	border-color: lightgray;
 }
 .activeChoice, .activeChoice:hover {
-	background-color: #242424;
+	background-color: white;
+	color: black;
+}
+.inactiveChoice, .inactiveChoice:hover {
+	background-color: black;
+	color: white;
 }
 .text-white {
 	color: white;

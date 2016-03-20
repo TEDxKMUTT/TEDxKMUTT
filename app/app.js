@@ -323,7 +323,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.submitted = true;
 		
     	// console.log($scope.formData);
-		if($scope.regisForm.$valid && $scope.dropdown.faculty.select != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null && $scope.subCase.subGroup.valid && $scope.subCase.subSubGroup.valid && (($scope.checkDiv.group.select == 0 && $scope.formData.pmQ1 != null) || ($scope.checkDiv.group.select == 1 && $scope.formData.curatorQ1 != null && $scope.formData.curatorQ2 != null) || ($scope.checkDiv.group.select == 2 && $scope.formData.creativeQ1 != null)))
+		if($scope.regisForm.$valid && $scope.formData.faculty != null && $scope.formData.department != null && $scope.dropdown.year.select != null && $scope.checkDiv.gender.select != null && $scope.checkDiv.group.select != null && $scope.subCase.subGroup.valid && $scope.subCase.subSubGroup.valid && (($scope.checkDiv.group.select == 0 && $scope.formData.pmQ1 != null) || ($scope.checkDiv.group.select == 1 && $scope.formData.curatorQ1 != null && $scope.formData.curatorQ2 != null) || ($scope.checkDiv.group.select == 2 && $scope.formData.creativeQ1 != null)))
 			{
 			$scope.warning = false;
 			console.log($scope.formData);

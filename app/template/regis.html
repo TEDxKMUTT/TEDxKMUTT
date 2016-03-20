@@ -45,7 +45,7 @@
 			<div class="checkbox-div">
 				<div class="col-sm-4" ng-repeat="item in checkDiv.gender.data">
 					<a href="" ng-click="selectOption('checkDiv','gender',$index)">
-						<div class="option" ng-class="{'activeChoice': $index == checkDiv.gender.select}">
+						<div class="option" ng-class="{'activeChoice': $index == checkDiv.gender.select,'inactiveChoice': $index != checkDiv.gender.select}">
 							<i class="fa fa-2x fa-{{checkDiv.gender.icon[$index]}}"></i>
 							<br/> {{item}}
 						</div>
@@ -145,7 +145,7 @@
 			<div class="checkbox-div">
 				<div class="col-sm-4" ng-repeat="item in checkDiv.group.data">
 					<a href="" ng-click="selectGroup($index)">
-						<div class="option" ng-class="{'activeChoice': $index == checkDiv.group.select}">
+						<div class="option" ng-class="{'activeChoice': $index == checkDiv.group.select,'inactiveChoice': $index != checkDiv.group.select}">
 							<i class="fa fa-2x fa-{{checkDiv.group.icon[$index]}}"></i>
 							<br/> {{item}}
 						</div>
@@ -161,7 +161,7 @@
 			<div class="checkbox-div">
 				<div class="col-sm-4" ng-repeat="item in checkDiv[subCase.subGroup.select].data">
 					<a href="" ng-click="selectSubGroup($index)">
-						<div class="option" ng-class="{'activeChoice': $index == checkDiv[subCase.subGroup.select].select}">
+						<div class="option" ng-class="{'activeChoice': $index == checkDiv[subCase.subGroup.select].select,'inactiveChoice': $index != checkDiv[subCase.subGroup.select].select}">
 							<i class="fa fa-2x fa-{{checkDiv[subCase.subGroup.select].icon[$index]}}"></i>
 							<br/> {{item}}
 						</div>
@@ -177,7 +177,7 @@
 			<div class="checkbox-div">
 				<div class="col-sm-4" ng-repeat="item in checkDiv[subCase.subSubGroup.select].data">
 					<a href="" ng-click="selectSubSubGroup($index)">
-						<div class="option" ng-class="{'activeChoice': $index == checkDiv[subCase.subSubGroup.select].select}">
+						<div class="option" ng-class="{'activeChoice': $index == checkDiv[subCase.subSubGroup.select].select,'inactiveChoice': $index != checkDiv[subCase.subSubGroup.select].select}">
 							<i class="fa fa-2x fa-{{checkDiv[subCase.subSubGroup.select].icon[$index]}}"></i>
 							<br/> {{item}}
 						</div>
