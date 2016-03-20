@@ -155,7 +155,7 @@
 			</div>
 		</div>
 		<!-- End of group -->
-		
+
 		<!-- Sub Group -->
 		<div class="form-group" ng-class="{'has-error': !subCase.subGroup.valid && submitted}" ng-hide="subCase.subGroup.select == NULL">
 			<label class="control-label text-white checkbox-div-label"><span ng-show="!subCase.subGroup.valid && submitted" class="glyphicon glyphicon-exclamation-sign"></span>{{subCase.subGroup.text}} <i class="fa fa-arrow-right"></i></label>
@@ -171,7 +171,7 @@
 			</div>
 		</div>
 		<!-- End of sub group -->
-		
+
 		<!-- Sub Sub Group -->
 		<div class="form-group" ng-class="{'has-error': !subCase.subSubGroup.valid && submitted}" ng-hide="subCase.subSubGroup.select == NULL">
 			<label class="control-label text-white checkbox-div-label"><span ng-show="!subCase.subSubGroup.valid && submitted" class="glyphicon glyphicon-exclamation-sign"></span> {{subCase.subSubGroup.text}} <i class="fa fa-arrow-right"></i></label>
@@ -231,7 +231,7 @@
 			</div>
 		</div>
 		<!-- End of Q4 -->
-		
+
 		<!-- Curator question -->
 		<div ng-show="checkDiv.group.select == 1">
 			<div class="form-group">
@@ -260,13 +260,13 @@
 			</div>
 		</div>
 		<!-- End of Curator question -->
-		
+
 		<!-- Creative question -->
 		<div ng-show="checkDiv.group.select == 2">
 			<div class="form-group">
 				<div class="col-sm-12">
 					<div ng-class="{'has-error': formData.creativeQ1 == null && checkDiv.group.select == 2 && (regisForm.creativeQ1.$touched || submitted)}">
-						<label for="creativeQ1" class="control-label text-white"><span ng-show="formData.creativeQ1 == null && checkDiv.group.select == 2 && (regisForm.creativeQ1.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> Creative Question : ให้อธิบายคำตอบของ "1+1 เท่ากับเท่าไหร่" โดยใส่ความสร้างสรรค์ลงไปให้มากที่สุด ตามหน้าที่ที่คุณสมัคร</label>
+						<label for="creativeQ1" class="control-label text-white text-left"><span ng-show="formData.creativeQ1 == null && checkDiv.group.select == 2 && (regisForm.creativeQ1.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> Creative Question : ให้อธิบายคำตอบของ "1+1 เท่ากับเท่าไหร่" โดยใส่ความสร้างสรรค์ลงไปให้มากที่สุด ตามหน้าที่ที่คุณสมัคร</label>
 						<p>(สามารถแนบลิงค์รูปภาพ หรืออื่นๆ ที่คุณต้องการสื่อสารแทนตัวอักษร)</p>
 						<textarea class="form-control text-white bg-black" rows="5" name="creativeQ1" ng-model="formData.creativeQ1"></textarea>
 					</div>
@@ -274,7 +274,7 @@
 			</div>
 		</div>
 		<!-- End of Creative question -->
-		
+
 		<!-- PM question -->
 		<div ng-show="checkDiv.group.select == 0">
 			<div class="form-group">
@@ -288,7 +288,7 @@
 			</div>
 		</div>
 		<!-- End of PM question -->
-		
+
 		<!-- Speaker Question -->
 		<div class="form-group">
 			<div class="col-sm-12">
