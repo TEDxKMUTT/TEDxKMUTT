@@ -58,8 +58,8 @@
 		<!-- Faculty -->
 		<div class="form-group">
 			<div class="col-sm-12">
-				<div ng-class="{'has-error': dropdown.faculty.select == null && submitted}">
-					<label class="control-label text-white"><span ng-show="dropdown.faculty.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> คณะ</label>
+				<div ng-class="{'has-error': formData.faculty == null && submitted}">
+					<label class="control-label text-white"><span ng-show="formdata.faculty == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> คณะ</label>
 					<br/>
 					<!-- Faculty Dropdown -->
 					<div class="btn-group btn-block" uib-dropdown>
@@ -74,12 +74,13 @@
 				</div>
 			</div>
 		</div>
-		<!-- End of Faculty, department, year -->
+		<!-- End of Faculty -->
 
+		<!-- Department and year -->
 		<div class="form-group">
 			<div class="col-sm-9">
-				<div ng-class="{'has-error': dropdown.department.select == null && submitted}">
-					<label for="department" class="control-label text-white"><span ng-show="dropdown.department.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> ภาควิชา</label>
+				<div ng-class="{'has-error': formData.department == null && submitted}">
+					<label for="department" class="control-label text-white"><span ng-show="formData.department == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> ภาควิชา</label>
 					<!-- Department Dropdown -->
 					<div class="btn-group btn-block" uib-dropdown>
 						<button id="single-button" type="button" class="btn btn-block btn-black" uib-dropdown-toggle ng-disabled="formData.faculty == null">
@@ -88,7 +89,7 @@
 						<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
 							<li role="menuitem" ng-repeat="item in dropdown[subCase.department.select].data"><a href="" ng-click="selectDepartment($index);">{{item}}</a></li>
 						</ul>
-					</div>
+					</div><!-- End of Department Dropdown -->
 				</div>
 			</div>
 
@@ -108,7 +109,7 @@
 				</div>
 				<!-- End of Year Dropdown -->
 			</div>
-		</div>
+		</div><!-- End of Department and year -->
 
 		<!-- Student ID -->
 		<div class="form-group">

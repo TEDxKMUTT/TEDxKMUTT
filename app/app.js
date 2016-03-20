@@ -126,8 +126,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.dropdown.prefix.text = "--";
 
 	$scope.dropdown.faculty = {};
-	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ","อื่นๆ"];
-	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arch","FIBO","MultiSci","Other"];
+	$scope.dropdown.faculty.data = ["คณะวิศวกรรมศาสตร์","คณะวิทยาศาสตร์","คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี","คณะเทคโนโลยีสารสนเทศ","คณะสถาปัตยกรรมศาสตร์และการออกแบบ","สถาบันวิทยาการหุ่นยนต์ภาคสนาม","วิทยาลัยสหวิทยาการ"];
+	$scope.dropdown.faculty.val = ["Eng","Sci","Ind","IT","Arch","FIBO","MultiSci"];
 	$scope.dropdown.faculty.select = null;
 	$scope.dropdown.faculty.text = "--";
 	
@@ -136,41 +136,41 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.subCase.department.text = "--";
 	
 	$scope.dropdown.depEng = {};
-	$scope.dropdown.depEng.data = ["วิศวกรรมเคมี","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการและเมคคาทรอนิกส์","วิศวกรรมคอมพิวเตอร์","วิศวกรรมระบบควบคุมและเครื่องมือวัด","วิศวกรรมสิ่งแวดล้อม","วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์","วิศวกรรมวัสดุและเครื่องมือ","อื่นๆ"];
-	$scope.dropdown.depEng.val = ["CHM","ME","EE","CE","PEMCE","CPE","INC","ENV","ENE","TME","Other"];
+	$scope.dropdown.depEng.data = ["วิศวกรรมเคมี","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการและเมคคาทรอนิกส์","วิศวกรรมคอมพิวเตอร์","วิศวกรรมระบบควบคุมและเครื่องมือวัด","วิศวกรรมสิ่งแวดล้อม","วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์","วิศวกรรมวัสดุและเครื่องมือ"];
+	$scope.dropdown.depEng.val = ["CHM","ME","EE","CE","PEMCE","CPE","INC","ENV","ENE","TME"];
 	$scope.dropdown.depEng.select = null;
 	$scope.dropdown.depEng.text = "--";
 	
 	$scope.dropdown.depSci = {};
-	$scope.dropdown.depSci.data = ["คณิตศาสตร์","เคมี","ฟิสิกส์ประยุกต์","จุลชีววิทยา","วิทยาการคอมพิวเตอร์ประยุกต์","สถิติ","วิทยาศาสตร์และเทคโนโลยีการอาหาร","อื่นๆ"];
-	$scope.dropdown.depSci.val = ["MTH","CHE","PHY","MIC","CS","STA","FS","Other"];
+	$scope.dropdown.depSci.data = ["คณิตศาสตร์","เคมี","ฟิสิกส์ประยุกต์","จุลชีววิทยา","วิทยาการคอมพิวเตอร์ประยุกต์","สถิติ","วิทยาศาสตร์และเทคโนโลยีการอาหาร"];
+	$scope.dropdown.depSci.val = ["MTH","CHE","PHY","MIC","CS","STA","FS"];
 	$scope.dropdown.depSci.select = null;
 	
 	$scope.dropdown.depInd = {};
-	$scope.dropdown.depInd.data = ["เทคโนโลยีการพิมพ์และบรรจุภัณฑ์","เทคโนโลยีอุตสาหกรรม","วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการ","เทคโนโลยีการศึกษาและการสื่อสารมวลชน","เทคโนโลยีมีเดีย","มีเดียอาตส์","มีเดียทางการแพทย์และวิทยาศาสตร์","อื่นๆ"];
-	$scope.dropdown.depInd.val = ["PRI","InT","CM","ME","EE","CE","PE","EDU","MET","MEA","MES","Other"];
+	$scope.dropdown.depInd.data = ["เทคโนโลยีการพิมพ์และบรรจุภัณฑ์","เทคโนโลยีอุตสาหกรรม","วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย","วิศวกรรมเครื่องกล","วิศวกรรมไฟฟ้า","วิศวกรรมโยธา","วิศวกรรมอุตสาหการ","เทคโนโลยีการศึกษาและการสื่อสารมวลชน","เทคโนโลยีมีเดีย","มีเดียอาตส์","มีเดียทางการแพทย์และวิทยาศาสตร์"];
+	$scope.dropdown.depInd.val = ["PRI","InT","CM","ME","EE","CE","PE","EDU","MET","MEA","MES"];
 	$scope.dropdown.depInd.select = null;
 	$scope.dropdown.depInd.text = "--";
 	
 	$scope.dropdown.depIT = {};
-	$scope.dropdown.depIT.data = ["วิทยาการคอมพิวเตอร์","เทคโนโลยีสารสนเทศ","อื่นๆ"];
+	$scope.dropdown.depIT.data = ["วิทยาการคอมพิวเตอร์","เทคโนโลยีสารสนเทศ"];
 	$scope.dropdown.depIT.val = ["CS","IT"];
 	$scope.dropdown.depIT.select = null;
 	
 	$scope.dropdown.depArch = {};
-	$scope.dropdown.depArch.data = ["สถาปัตยกรรม","สถาปัตยกรรมภายใน","การออกแบบอุตสาหกรรม","ออกแบบนิเทศศิลป์","อื่นๆ"];
-	$scope.dropdown.depArch.val = ["ARC","INT","IND","COM","Other"];
+	$scope.dropdown.depArch.data = ["สถาปัตยกรรม","สถาปัตยกรรมภายใน","การออกแบบอุตสาหกรรม","ออกแบบนิเทศศิลป์"];
+	$scope.dropdown.depArch.val = ["ARC","INT","IND","COM"];
 	$scope.dropdown.depArch.select = null;
 	
 	$scope.dropdown.depFIBO = {};
-	$scope.dropdown.depFIBO.data = ["วิศวกรรมหุ่นยนต์และระบบอัตโนมัติ","อื่นๆ"];
-	$scope.dropdown.depFIBO.val = ["RA","Other"];
+	$scope.dropdown.depFIBO.data = ["วิศวกรรมหุ่นยนต์และระบบอัตโนมัติ"];
+	$scope.dropdown.depFIBO.val = ["RA"];
 	$scope.dropdown.depFIBO.select = null;
 	$scope.dropdown.depFIBO.text = "--";
 	
 	$scope.dropdown.depMultiSci = {};
-	$scope.dropdown.depMultiSci.data = ["วิทยาศาสตร์และเทคโนโลยี","อื่นๆ"];
-	$scope.dropdown.depMultiSci.val = ["ST","Other"];
+	$scope.dropdown.depMultiSci.data = ["วิทยาศาสตร์และเทคโนโลยี"];
+	$scope.dropdown.depMultiSci.val = ["ST"];
 	$scope.dropdown.depMultiSci.select = null;
 
 	$scope.dropdown.year = {};
@@ -253,7 +253,6 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.dropdown[depObj].select = index;
 		$scope.formData.department = $scope.dropdown[depObj].val[index];
 		$scope.subCase.department.text = $scope.dropdown[depObj].data[index];
-		$scope.subCase.department.select = $scope.dropdown[depObj].val[index];
 		}
 	
 	$scope.selectGroup = function(index)
@@ -276,8 +275,15 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 			$scope.subCase.subGroup.text = null;
 			$scope.subCase.subGroup.valid = true;
 			}
+		
+		//clear sub group data
 		$scope.formData.subGroup = null;
 		$scope.formData.subSubGroup = null;
+		
+		//clear sub sub group
+		$scope.subCase.subSubGroup.select = null;
+		$scope.subCase.subSubGroup.text = null;
+		$scope.subCase.subSubGroup.valid = true;
 		}
 	
 	$scope.selectSubGroup = function(index)
