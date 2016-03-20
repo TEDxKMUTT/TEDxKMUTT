@@ -92,7 +92,7 @@ html,body{
 .buttons .btn{
   background: #ff2b06;
   color: #fff;
-  padding: 0.685em 3.525em;
+  padding: .685em 0.15em;
   width: 18em;
   margin: 0.3125em 0; /* 5/16 */
   font-size: 1em; /* 16/16 */
@@ -106,7 +106,7 @@ html,body{
 }
 /* btn text */
 .buttons .btn-reg:before{
-  content : "BE A VOLUNTEER";
+  content : "STAFF REGISTRATION!";
 }
 /*.buttons .btn-reg:hover:before{
   content : "FIRST CALL 21.3";

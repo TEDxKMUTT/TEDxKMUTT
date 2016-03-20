@@ -40,8 +40,8 @@ app.run(function($rootScope, $location, $anchorScroll) {
 // Controller
 app.controller('homeController', function($scope, $sce) {
   $scope.page = 'tedx';
-  $scope.content = hContent.en;
-  clang = 'en';
+  $scope.content = hContent.th;
+  clang = 'th';
 
   $scope.lang = function(changeLang) {
     if (changeLang == 'en') {

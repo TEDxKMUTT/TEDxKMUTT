@@ -23,14 +23,14 @@
 
 		<!-- Nick name, age -->
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-xs-8">
 				<div ng-class="{'has-error': regisForm.nickname.$invalid && (regisForm.nickname.$touched || submitted)}">
 					<label for="nickname" class="control-label text-white"><span ng-show="regisForm.nickname.$invalid && (regisForm.nickname.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> ชื่อเล่น</label>
 					<input type="text" class="form-control text-white bg-black" name="nickname" ng-model="formData.nickname" required>
 				</div>
 			</div>
 
-			<div class="col-sm-3">
+			<div class="col-xs-4">
 				<div ng-class="{'has-error': regisForm.age.$invalid && (regisForm.age.$touched || submitted)}">
 					<label for="age" class="control-label text-white"><span ng-show="regisForm.age.$invalid && (regisForm.age.$touched || submitted)" class="glyphicon glyphicon-exclamation-sign"></span> อายุ</label>
 					<input type="number" class="form-control text-white bg-black" name="age" ng-model="formData.age" required>
@@ -43,7 +43,7 @@
 		<div class="form-group" ng-class="{'has-error': checkDiv.gender.select == null && submitted}">
 			<label class="control-label text-white checkbox-div-label"><span ng-show="checkDiv.gender.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> เพศ</label>
 			<div class="checkbox-div">
-				<div class="col-sm-4" ng-repeat="item in checkDiv.gender.data">
+				<div class="col-xs-4" ng-repeat="item in checkDiv.gender.data">
 					<a href="" ng-click="selectOption('checkDiv','gender',$index)">
 						<div class="option" ng-class="{'activeChoice': $index == checkDiv.gender.select,'inactiveChoice': $index != checkDiv.gender.select}">
 							<i class="fa fa-2x fa-{{checkDiv.gender.icon[$index]}}"></i>
@@ -78,7 +78,7 @@
 
 		<!-- Department and year -->
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-xs-9">
 				<div ng-class="{'has-error': formData.department == null && submitted}">
 					<label for="department" class="control-label text-white"><span ng-show="formData.department == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> ภาควิชา</label>
 					<!-- Department Dropdown -->
@@ -93,7 +93,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-3">
+			<div class="col-xs-3">
 				<div ng-class="{'has-error': dropdown.year.select == null && submitted}">
 					<label class="control-label text-white"><span ng-show="dropdown.year.select == null && submitted" class="glyphicon glyphicon-exclamation-sign"></span> ชั้นปี</label>
 					<br/>
