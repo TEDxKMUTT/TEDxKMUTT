@@ -12,6 +12,7 @@
 var mailer = require('./smtp_mail');
 // var mailer = require('./send_mail_old');
 var PersonModel = require('./models/person_ted');
+// var allMemModel = require('./models/count_mem');
 
 var active_code = function(limit){
 
@@ -40,48 +41,61 @@ module.exports = function(app) {
 
   app.post('/api/reg_sav', function(req, res){
     var activecodes = active_code(length);
+    var id_no = 0;
+    var id_sub = 0;
 
-    // PersonModel
-    PersonModel.create({
-      prefix: req.body.prefix,
-      name: req.body.name,
-      sname: req.body.lastName,
-      nick: req.body.nickname,
-      age: req.body.age,
-      gender: req.body.gender,
-      genderf: req.body.genderFull,
-      faculty: req.body.faculty,
-      facultyf: req.body.facultyFull,
-      department: req.body.department,
-      departmentf: req.body.departmentFull,
-      year: req.body.year,
-      stdID: req.body.studentID,
-      email: req.body.email,
-      phone: req.body.phone,
-      group: req.body.group,
-      groupf: req.body.groupFull,
-      subGroup: req.body.subGroup,
-      subGroupf: req.body.subGroupFull,
-      subSubGroup: req.body.subSubGroup,
-      subSubGroupf: req.body.subSubGroupFull,
-      q1: req.body.q1,
-      q2: req.body.q2,
-      q3: req.body.q3,
-      q4: req.body.q4,
-      accode: activecodes,
-      acurl: webUrl + activecodes,
-      status: 401
+    PersonModel.count({
+      group: req.body.group
+    }, function(err, info){
+      // console.log(info);
+      id_no = info + 1;
 
-    },function(err,person){
-      if(err) res.send("create error : "  + err);
-      // console.log(req.body.lastname);
-      console.log(req.body);
-      // console.log(req.body.departmentFull);
-      // mailer(req.body.name, req.body.email, req.body.group);
-      // console.log(activecodes);
-      // console.log(obid);
-      mailer(req.body, "TEDxKMUTT: Welcome to TEDxKMUTT");
-      // mailer(req.body.name, req.body.email, req.body.group, "TEDxKMUTT: Confirm your email", "https://tedxkmutt.com/active_code/" + activecodes);
+
+      // PersonModel
+      PersonModel.create({
+        prefix: req.body.prefix,
+        name: req.body.name,
+        sname: req.body.lastName,
+        nick: req.body.nickname,
+        age: req.body.age,
+        gender: req.body.gender,
+        genderf: req.body.genderFull,
+        faculty: req.body.faculty,
+        facultyf: req.body.facultyFull,
+        department: req.body.department,
+        departmentf: req.body.departmentFull,
+        year: req.body.year,
+        stdID: req.body.studentID,
+        email: req.body.email,
+        phone: req.body.phone,
+        group: req.body.group,
+        groupf: req.body.groupFull,
+        subGroup: req.body.subGroup,
+        subGroupf: req.body.subGroupFull,
+        subSubGroup: req.body.subSubGroup,
+        subSubGroupf: req.body.subSubGroupFull,
+        q1: req.body.q1,
+        q2: req.body.q2,
+        q3: req.body.q3,
+        q4: req.body.q4,
+        accode: activecodes,
+        acurl: webUrl + activecodes,
+        status: 401,
+        ID: id_no,
+        Ident: req.body.group + "-" + req.body.subGroup + "-" + req.body.subSubGroup + "-" + id_no,
+
+      },function(err,person){
+        if(err) res.send("create error : "  + err);
+        // console.log(req.body.lastname);
+        console.log(req.body);
+        // console.log(req.body.departmentFull);
+        // mailer(req.body.name, req.body.email, req.body.group);
+        // console.log(activecodes);
+        // console.log(obid);
+        mailer(req.body, "TEDxKMUTT: Welcome to TEDxKMUTT");
+        // mailer(req.body.name, req.body.email, req.body.group, "TEDxKMUTT: Confirm your email", "https://tedxkmutt.com/active_code/" + activecodes);
+      });
+      console.log(id_no);
     });
 
 

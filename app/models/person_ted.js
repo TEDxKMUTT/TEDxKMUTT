@@ -30,6 +30,8 @@ var onePerson = new Schema({
   accode: String,
   acurl: String,
   status: Number,
+  ID: Number,
+  Ident: String,
 });
 
 
