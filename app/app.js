@@ -24,6 +24,14 @@ app.config(function($routeProvider, $locationProvider){
 
 });
 
+//AnchorScroll handle for regis page
+app.run(function($rootScope, $location, $anchorScroll) {
+  //when the route is changed scroll to the proper element.
+  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+    if($location.hash()) $anchorScroll();  
+  });
+});
+
 // Controller
 app.controller('homeController', function($scope, $sce) {
   $scope.page = 'tedx';
@@ -257,6 +265,27 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	
 	$scope.selectGroup = function(index)
 		{
+		
+		//clear old question if change group
+		if(index != $scope.checkDiv.group.select)
+			{
+			$scope.formData.curatorQ1 = null;
+			$scope.formData.curatorQ2 = null;
+			$scope.formData.creativeQ1 = null;
+			$scope.formData.pmQ1 = null;
+			$scope.regisForm.curatorQ1.$touched = false;
+			$scope.regisForm.curatorQ2.$touched = false;
+			$scope.regisForm.creativeQ1.$touched = false;
+			$scope.regisForm.pmQ1.$touched = false;
+			}
+		
+		//Clear other sub group if change group
+		$scope.checkDiv.subPM.select = null;
+		$scope.checkDiv.subCr.select = null;
+		$scope.checkDiv.subPR.select = null;
+		$scope.checkDiv.subDP.select = null;
+		
+		//Set select value
 		$scope.checkDiv.group.select = index;
 		$scope.checkDiv.group.text = $scope.checkDiv.group.data[index];
 		$scope.formData.group = $scope.checkDiv.group.val[index];
@@ -290,6 +319,11 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		{
 		var subGroup = $scope.subCase.subGroup.select;
 		
+		//Clear other sub sub group if change sub group
+		$scope.checkDiv.subPR.select = null;
+		$scope.checkDiv.subDP.select = null;
+		
+		//Set select value
 		$scope.checkDiv[subGroup].select = index;
 		$scope.checkDiv[subGroup].text = $scope.checkDiv[subGroup].data[index];
 		$scope.formData.subGroup = $scope.checkDiv[subGroup].val[index];
