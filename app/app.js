@@ -97,14 +97,20 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	$scope.formData.nickname;
 	$scope.formData.age;
 	$scope.formData.gender;
+	$scope.formData.genderFull;
 	$scope.formData.faculty;
+	$scope.formData.facultyFull;
 	$scope.formData.department;
+	$scope.formData.departmentFull;
 	$scope.formData.year;
 	$scope.formData.email;
 	$scope.formData.phone;
 	$scope.formData.group;
 	$scope.formData.subGroup;
 	$scope.formData.subSubGroup;
+	$scope.formData.groupFull;
+	$scope.formData.subGroupFull;
+	$scope.formData.subSubGroupFull;
 	$scope.formData.q1;
 	$scope.formData.q2;
 	$scope.formData.q3;
@@ -242,6 +248,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope[type][name].select = index;
 		$scope[type][name].text = $scope[type][name].data[index];
 		$scope.formData[name] = $scope[type][name].val[index];
+		$scope.formData[name+'Full'] = $scope[type][name].text;
 		}
 	
 	$scope.selectFaculty = function(index)
@@ -252,6 +259,9 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.subCase.department.text = "--";
 		$scope.subCase.department.select = "dep"+$scope.dropdown.faculty.val[index];
 		$scope.formData.department = null;
+		
+		$scope.formData.facultyFull = $scope.dropdown.faculty.text;
+		$scope.formData.departmentFull = null;
 		}
 	
 	$scope.selectDepartment = function(index)
@@ -261,6 +271,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.dropdown[depObj].select = index;
 		$scope.formData.department = $scope.dropdown[depObj].val[index];
 		$scope.subCase.department.text = $scope.dropdown[depObj].data[index];
+		
+		$scope.formData.departmentFull = $scope.subCase.department.text;
 		}
 	
 	$scope.selectGroup = function(index)
@@ -289,6 +301,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.checkDiv.group.select = index;
 		$scope.checkDiv.group.text = $scope.checkDiv.group.data[index];
 		$scope.formData.group = $scope.checkDiv.group.val[index];
+		$scope.formData.groupFull = $scope.checkDiv.group.text;
 		
 		$scope.subCase.subGroup.select = "sub"+$scope.checkDiv.group.val[index];
 		
@@ -308,6 +321,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		//clear sub group data
 		$scope.formData.subGroup = null;
 		$scope.formData.subSubGroup = null;
+		$scope.formData.subGroupFull = null;
+		$scope.formData.subSubGroupFull = null;
 		
 		//clear sub sub group
 		$scope.subCase.subSubGroup.select = null;
@@ -327,6 +342,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.checkDiv[subGroup].select = index;
 		$scope.checkDiv[subGroup].text = $scope.checkDiv[subGroup].data[index];
 		$scope.formData.subGroup = $scope.checkDiv[subGroup].val[index];
+		$scope.formData.subGroupFull = $scope.checkDiv[subGroup].text;
 		
 		$scope.subCase.subGroup.valid = true;
 		
@@ -345,6 +361,7 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 			$scope.subCase.subSubGroup.valid = true;
 			}
 		$scope.formData.subSubGroup = null;
+		$scope.formData.subSubGroupFull = null;
 		}
 	
 	$scope.selectSubSubGroup = function(index)
@@ -354,6 +371,8 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 		$scope.checkDiv[subSubGroup].select = index;
 		$scope.checkDiv[subSubGroup].text = $scope.checkDiv[subSubGroup].data[index];
 		$scope.formData.subSubGroup = $scope.checkDiv[subSubGroup].val[index];
+		$scope.formData.subSubGroupFull = $scope.checkDiv[subSubGroup].text;
+		
 		$scope.subCase.subSubGroup.valid = true;
 		}
 
