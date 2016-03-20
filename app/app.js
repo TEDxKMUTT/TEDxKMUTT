@@ -24,6 +24,14 @@ app.config(function($routeProvider, $locationProvider){
 
 });
 
+//AnchorScroll handle for regis page
+app.run(function($rootScope, $location, $anchorScroll) {
+  //when the route is changed scroll to the proper element.
+  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+    if($location.hash()) $anchorScroll();  
+  });
+});
+
 // Controller
 app.controller('homeController', function($scope, $sce) {
   $scope.page = 'tedx';
@@ -257,6 +265,20 @@ app.controller('regController',['$scope', '$http', '$location','$anchorScroll',f
 	
 	$scope.selectGroup = function(index)
 		{
+		
+		if(index != $scope.checkDiv.group.select)
+			{
+			//clear old question if change group
+			$scope.formData.curatorQ1 = null;
+			$scope.formData.curatorQ2 = null;
+			$scope.formData.creativeQ1 = null;
+			$scope.formData.pmQ1 = null;
+			$scope.regisForm.curatorQ1.$touched = false;
+			$scope.regisForm.curatorQ2.$touched = false;
+			$scope.regisForm.creativeQ1.$touched = false;
+			$scope.regisForm.pmQ1.$touched = false;
+			}
+		
 		$scope.checkDiv.group.select = index;
 		$scope.checkDiv.group.text = $scope.checkDiv.group.data[index];
 		$scope.formData.group = $scope.checkDiv.group.val[index];
