@@ -20,7 +20,7 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/public'));
 require('./app/routes.js')(app);
 
 // Test routes .
