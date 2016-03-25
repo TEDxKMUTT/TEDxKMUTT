@@ -10,46 +10,47 @@
 
 // var mailer = require('./send_mail');
 var mailer = require('./smtp_mail');
+
+var mailloop = require('./mail_loop');
 // var mailer = require('./send_mail_old');
 var PersonModel = require('./models/person_ted');
+var Q = require('q');
 // var allMemModel = require('./models/count_mem');
 
-var active_code = function(limit){
+var active_code = function(limit) {
 
   var microsec = new Date().getTime();
   var accode = Math.floor(Math.random() * (94239847));
   var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < limit; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+  for (var i = 0; i < limit; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
   text += accode;
   text += "_" + microsec;
 
   return text;
 }
 
-
-// var findObid = function()
-
 module.exports = function(app) {
   const MAX = 15;
   const MIN = 8;
   var webUrl = 'https://tedxkmutt.com/';
-  var length =Math.floor(Math.random() * (MAX-MIN + 1) + MIN);
+  var length = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
 
+  app.get('/api/user_mxail', function(req, res) {
+    mailloop();
+  });
 
-  app.post('/api/reg_sav', function(req, res){
+  app.post('/api/reg_sav', function(req, res) {
     var activecodes = active_code(length);
     var id_no = 0;
     var id_sub = 0;
 
     PersonModel.count({
       group: req.body.group
-    }, function(err, info){
-      // console.log(info);
+    }, function(err, info) {
       id_no = info + 1;
-
 
       // PersonModel
       PersonModel.create({
@@ -78,20 +79,20 @@ module.exports = function(app) {
         q2: req.body.q2,
         q3: req.body.q3,
         q4: req.body.q4,
+        cuQ1: req.body.curatorQ1,
+        cuQ2: req.body.curatorQ2,
+        creQ1: req.body.creativeQ1,
+        pmQ1: req.body.pmQ1,
+        speaker: req.body.speaker,
         accode: activecodes,
         acurl: webUrl + activecodes,
         status: 401,
         ID: id_no,
         Ident: req.body.group + "-" + req.body.subGroup + "-" + req.body.subSubGroup + "-" + id_no,
 
-      },function(err,person){
-        if(err) res.send("create error : "  + err);
-        // console.log(req.body.lastname);
+      }, function(err, person) {
+        if (err) res.send("create error : " + err);
         console.log(req.body);
-        // console.log(req.body.departmentFull);
-        // mailer(req.body.name, req.body.email, req.body.group);
-        // console.log(activecodes);
-        // console.log(obid);
         mailer(req.body, "TEDxKMUTT: Welcome to TEDxKMUTT");
         // mailer(req.body.name, req.body.email, req.body.group, "TEDxKMUTT: Confirm your email", "https://tedxkmutt.com/active_code/" + activecodes);
       });
@@ -102,12 +103,7 @@ module.exports = function(app) {
 
   });
 
-  app.get('/ac/', function(req, res){
-    console.log("test2");
-    res.redirect('/active_codes/');
-  });
-
-  app.get('/active_code/:codei', function(req, res){
+  app.get('/active_code/:codei', function(req, res) {
     // PersonModel.findOne({accode: req.params.codei}, function(err, info){
     //   if(err)
     //     console.log("error : " + err);
@@ -117,28 +113,16 @@ module.exports = function(app) {
     //   console.log(info.status);
     //   info.status = 200;
     // });
-    PersonModel.findOne({accode: req.params.codei}, function(err, info){
+    PersonModel.findOne({
+      accode: req.params.codei
+    }, function(err, info) {
       console.log(info);
-      if(info==null){
+      if (info == null) {
         res.send("nusss");
-      }else{
+      } else {
         res.send(info);
       }
     });
-
-
-    // PersonModel.findOneAndUpdate({accode: req.params.codei}, {
-    //   status: 200,
-    // },
-    //    function(err, info){
-    //   if(err)
-    //     console.log("error : " + err);
-    //
-    //     // res.json(info.status);
-    //   // console.log(res.json(info));
-    //   //console.log(info.status);
-    // });
-
 
 
   });

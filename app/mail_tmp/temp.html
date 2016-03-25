@@ -1,0 +1,99 @@
+
+<html>
+<head>
+  <style type="text/css">
+    * {
+      outline: 0;
+    }
+    .copy_line {
+      display: inline;
+    }
+    .wrapper {
+      max-width: 1366px;
+      margin: 0 auto;
+      padding: 5px 10px;
+    }
+    .line {
+      height: 1px;
+      width: 100%;
+      background-color: #666;
+      margin: 10px 0;
+    }
+    .social {
+      margin-right: 5px;
+      text-decoration: none;
+    }
+    .social:hover{
+      color: inherit;
+    }
+    #name {
+      font-size: 1.2em;
+    }
+    #confirm_box {
+      background-color: #efefef;
+      padding: 10px 8px;
+      width: auto;
+    }
+    #confirm_btn {
+      border-radius: 0;
+      background-color: #FF2508;
+      color: #fff;
+      font-size: 1.25em;
+      padding: 0.685em 3.525em;
+      -webkit-appearance: none;
+      border: 0;
+      text-decoration: none;
+    }
+    #copy {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper" style="
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 5px 10px;">
+    <div class="contain">
+      <img src="https://tedxkmutt.com/tedxblack.png" alt="TEDxKMUTT" width="25%" />
+    </div>
+    <div class="line" style="
+    height: 1px;
+    width: 100%;
+    background-color: #666;
+    margin: 10px 0;"></div>
+
+    <div class="contain">
+
+      <p id="name" style="font-size: 1.2em;">Hi! {{name}},</p>
+      <p>Welcome to <b>TEDxKMUTT</b>.</p>
+      <p>You have registered in <b>{{group}}</b></p>
+      <p><b>{{sgroup}}</b></p>
+      <p><b>{{ssgroup}}</b></p>
+      <p>
+        <!-- <br /> So, <i><b>please confirm your email.</b></i> -->
+      </p>
+    </div>
+
+    <div id="confirm_box" style="
+    background-color: #efefef;
+    padding: 10px 8px;
+    width: 80%;">
+      <p>Name: {{name}} {{surname}}</p>
+      <p>Nickname: {{nick}}</p>
+      <p>Age : {{age}}</p>
+      <p>Faculty: {{fac}}</p>
+      <p>Department: {{dep}}</p>
+      <p>{{groupQuest1}}</p>
+      <p>{{groupQuest2}}</p>
+    </div>
+
+    <div id="copy" style="margin-top: 10px;">
+      <p class="copy_line">© 2016 TEDxKMUTT </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

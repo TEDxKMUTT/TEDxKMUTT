@@ -1,0 +1,19 @@
+{
+  "name": "tedxadmin",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "j.antronic"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/antronic/reg_sys_mongo",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

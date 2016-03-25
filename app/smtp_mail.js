@@ -1,32 +1,61 @@
-'use strict';
+'use strict'; // ignore with older javascript
 
 var nodemailer = require('nodemailer'),
-    // smtpTransport = require('nodemailer-smtp-transport'),
-    mg = require('nodemailer-mailgun-transport'),
-    mongoose = require('mongoose'),
-    Mailgun = require('mailgun-js'),
-    Q = require('q'),
-    nunjucks = require('nunjucks');
+  smtpTransport = require('nodemailer-smtp-transport'),
+  mongoose = require('mongoose'),
+  Mailgun = require('mailgun-js'),
+  Q = require('q'),
+  nunjucks = require('nunjucks');
 
-// This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
+
 var auth = {
+  // Select the service of mail
+  // e.g. 'Google'
   service: 'Mailgun',
+  // SMTP HOST
   host: 'smtp.mailgun.org',
+  port: 465,
   auth: {
+    // USER and PASSWORD for auth to SMTP server
     user: 'tedxkmutt@antronic.link',
     pass: 'tedx123'
   }
 }
 
-// var nodemailerMailgun = nodemailer.createTransport(mg(auth));
-var nodemailerMailgun = nodemailer.createTransport(auth);
+// ESTABLISH TO SMTP SERVER
+var nodemailerMailgun = nodemailer.createTransport(smtpTransport(auth));
 
-// var creator = function(name, email, type, link_active) {
+// CREATE MAIL
 var creator = function(data) {
 
+  // array for contain the obj infomation
   var mailing = [];
 
-  var emailContent = nunjucks.render('temp.html', {
+  // variable for group
+  var group = data.group;
+
+  // initialize the variable for some group has 2 quest
+  var groupQuestion1 = "";
+  var groupQuestion2 = "";
+
+  // check the type of that group
+  if (group == "PM") {
+    //set the group question
+    groupQuestion1 = "Project Management Question : " + data.pmQ1;
+  }
+  if (group == "Cu") {
+    groupQuestion1 = "Curator Question 1 : " + data.curatorQ1;
+    groupQuestion2 = "Curator Question 2 : " + data.curatorQ2;
+  }
+  if (group == "Cr") {
+    groupQuestion1 = "Creative Question : " + data.creativeQ1;
+  }
+
+  // we use nunjack for render the html for send the variable to html, and then export into MIME
+  var emailContent = nunjucks.render('./app/mail_tmp/temp.html', {
+    // here there are variable in html
+    // e.g. name is the variable in html {{name}}
+    // after ':' (colon) is the data that we would like to put into the variable
     name: data.name,
     surname: data.lastName,
     nick: data.nickname,
@@ -36,8 +65,11 @@ var creator = function(data) {
     ssgroup: data.subSubGroupFull,
     fac: data.facultyFull,
     dep: data.departmentFull,
+    groupQuest1: groupQuestion1,
+    groupQuest2: groupQuestion2,
   });
 
+  // push the data into mailing's array
   mailing.push({
     user: data.email,
     contents: emailContent
@@ -46,61 +78,47 @@ var creator = function(data) {
   return mailing;
 }
 
-var sender = function(email, subject, html) {
-  var deffered = Q.defer();
-  nodemailerMailgun.sendMail({
-      from: 'Support TEDxKMUTT <support@tedxkmutt.com>',
-      // from: 'support@tedxkmutt.com',
-      to: email,
-      subject: subject,
 
-      html: html
-  }, function(error, info){
+// function for send the email
+var sender = function(email, subject, html) {
+  // Q is the module for waiting the request until it done and send the data
+  // so .defer just like create the waiter(does not the boy in the cafe but it's someone to waiting the request)
+  var deffered = Q.defer();
+
+  // here is the function to sending the mail
+  nodemailerMailgun.sendMail({
+    from: 'Support TEDxKMUTT <support@tedxkmutt.com>',
+    to: email,
+    subject: subject,
+    // html that come from the params
+    html: html
+  }, function(error, info) {
     if (error) {
+      // if has the error the deffered has no longer waiting anymore
       deffered.reject(console.log('failed: ' + error));
     } else {
+      // else the deffered will send the data
       deffered.resolve(info)
     }
   });
 
+  // and then return it
   return deffered.promise;
 };
 
-// // link active
-// module.exports = function(name, email, type, subject, link_active){
-// // module.exports = function(name, email, type, subject){
-//
-//   var mailing = creator(name, email, type, link_active);
-//   // var mailing = creator(name, email, type, 'https://tedxkmutt.com/active/dummy234567890');
-//
-//   for(var i = mailing.length -1; i>= 0; i--){
-//     sender(mailing[i].user, subject, mailing[i].contents)
-//       .then(function (response){
-//         console.log(response + "\nname : " + name + "\nemail : " + email);
-//       })
-//       .catch(function (error){
-//         console.log("error : " + error)
-//       })
-//   }
-//
-// }
 
-// link active
-module.exports = function(data, subject){
-// module.exports = function(name, email, type, subject){
+module.exports = function(data, subject) {
 
-  // var mailing = creator(data.name, data.email, data.group, link_active);
+  // data is the params to recieve the obj
   var mailing = creator(data);
-  // var mailing = creator(name, email, type, 'https://tedxkmutt.com/active/dummy234567890');
 
-  for(var i = mailing.length -1; i>= 0; i--){
-    sender(mailing[i].user, subject, mailing[i].contents)
-      .then(function (response){
-        console.log(response + "\nname : " + data.name + "\nemail : " + data.email);
-      })
-      .catch(function (error){
-        console.log("error : " + error)
-      })
-  }
+  sender(mailing[0].user, subject, mailing[0].contents)
+    .then(function(response) {
+      console.log(response + "\nname : " + data.name + "\nemail : " + data.email);
+    })
+    .catch(function(error) {
+      console.log("error : " + error)
+    })
+
 
 }

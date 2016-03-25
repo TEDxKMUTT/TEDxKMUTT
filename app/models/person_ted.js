@@ -27,6 +27,15 @@ var onePerson = new Schema({
   q2: String,
   q3: String,
   q4: String,
+  // $scope.formData.curatorQ1;
+	// $scope.formData.curatorQ2;
+	// $scope.formData.creativeQ1;
+	// $scope.formData.pmQ1;
+  cuQ1: String,
+  cuQ2: String,
+  creQ1: String,
+  pmQ1: String,
+  speaker: String,
   accode: String,
   acurl: String,
   status: Number,
