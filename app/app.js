@@ -8,7 +8,7 @@ app.config(function($routeProvider, $locationProvider){
     controllerAs: 'home'
   })
   .when('/registration',{
-    templateUrl: "app/template/regis.html",
+    templateUrl: "app/template/over.html", //Regis id over!
     controller: 'regController',
     controllerAs: 'reg'
   })
