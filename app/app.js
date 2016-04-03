@@ -8,8 +8,8 @@ app.config(function($routeProvider, $locationProvider){
     controllerAs: 'home'
   })
   .when('/registration',{
-    templateUrl: "app/template/over.html", //Regis id over!
-    controller: 'regController',
+    templateUrl: "app/template/over.html", //Regis is over!
+    controller: 'homeController',
     controllerAs: 'reg'
   })
 
